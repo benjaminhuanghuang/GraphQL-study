@@ -16,11 +16,13 @@ Setup prisma
 ```sh
 npm i @prisma/client dotenv
 npm i -D prisma @types/node
-
+npm i @prisma/adapter-pg pg
 
 npx prisma init
 # creates prisma folder, .env and prisma.config.ts
 # add /generated/prisma to .gitignore
+
+npx prisma generate
 ```
 
 Add model in prisma/schema.prisma
