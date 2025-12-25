@@ -1,0 +1,22 @@
+{
+  "name": "graphql-apollo-prisma-skeleton",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@apollo/server": "^5.2.0",
+    "@prisma/client": "^7.2.0",
+    "dotenv": "^17.2.3",
+    "graphql": "^16.12.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.2.0",
+    "typescript": "^5.9.3"
+  }
+}
