@@ -20,7 +20,6 @@
     "types": ["node"], // Include Node.js type definitions
     "resolveJsonModule": true, // Allow `import data from './data.json'`
     "allowSyntheticDefaultImports": true,
-
     /* Source Maps (for debugging) */
     "sourceMap": true // Generate .map files
   },

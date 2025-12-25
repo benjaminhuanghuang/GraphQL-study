@@ -32,3 +32,23 @@ Setup database
 ```sh
 npx prisma migrate dev --name init
 ```
+
+## Test
+
+```graphql
+mutation {
+  addBook(title: "The Pragmatic Programmer", author: "Andrew Hunt") {
+    id
+    title
+    author
+  }
+}
+
+query {
+  books {
+    id
+    title
+    author
+  }
+}
+```

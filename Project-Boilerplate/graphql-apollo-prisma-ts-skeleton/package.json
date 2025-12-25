@@ -2,8 +2,9 @@
   "name": "graphql-apollo-prisma-skeleton",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node --watch index.ts"
+    "dev": "tsx --watch index.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^25.0.3",
     "prisma": "^7.2.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

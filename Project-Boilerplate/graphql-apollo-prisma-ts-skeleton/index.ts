@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import { prisma } from "./prisma";
+import { prisma } from "./lib/prisma";
 
 // Define your GraphQL schema
 const typeDefs = `
@@ -38,9 +38,14 @@ const resolvers = {
     },
   },
 };
+
 async function startApolloServer() {
-  const server = new ApolloServer();
-  await startStandaloneServer();
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: true,
+  });
+  await startStandaloneServer(server);
   console.log("Server is running!");
 }
 
