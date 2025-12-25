@@ -14,10 +14,11 @@ npm i -D typescript
 Setup prisma
 
 ```sh
-npm i @prisma/client
-npm i -D prisma
+npm i @prisma/client dotenv
+npm i -D prisma @types/node
 
 
-# create prisma folder, .env and prisma.config.ts
 npx prisma init
+# creates prisma folder, .env and prisma.config.ts
+# add /generated/prisma to .gitignore
 ```

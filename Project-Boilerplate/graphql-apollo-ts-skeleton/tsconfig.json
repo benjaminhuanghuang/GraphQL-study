@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2021", // Modern JS features (Node.js 16+)
+    "lib": ["ES2021"], // Use latest standard library
+    "module": "CommonJS", // Node.js uses CommonJS (require/module.exports)
+    "moduleResolution": "node", // Resolve like Node does
+    "esModuleInterop": true, // Allow default import from CommonJS
+    "forceConsistentCasingInFileNames": true,
+
+    /* Output */
+    // "rootDir": "./src", // Source code root
+
+    /* Strictness */
+    "strict": true, // Enable all strict type-checking
+    "noImplicitAny": true, // Disallow implicit `any`
+    "strictNullChecks": true, // Better null safety
+
+    /* Node.js Helpers */
+    "types": ["node"], // Include Node.js type definitions
+    "resolveJsonModule": true, // Allow `import data from './data.json'`
+    "allowSyntheticDefaultImports": true,
+
+    /* Source Maps (for debugging) */
+    "sourceMap": true // Generate .map files
+  },
+  "exclude": ["node_modules", "dist"] // Ignore these
+}
