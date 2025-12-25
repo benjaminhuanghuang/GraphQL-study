@@ -1,0 +1,28 @@
+### 
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query" : "{hello { text views } }"
+}
+
+
+###  create user
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { createUser(userInput: { email: \"test2@test.com\", name: \"Tom2\", password: \"secret123\" }) { _id email name } }"
+}
+
+###  login
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query": "query UserLogin($email: String!, $password: String!) { login(email: $email, password: $password) { token userId } }",
+  "variables": {
+    "email": "test@test.com",
+    "password": "secret123"
+  }
+}

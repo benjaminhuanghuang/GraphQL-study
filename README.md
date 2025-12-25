@@ -22,11 +22,3 @@
 
 
 
-## Setup
-```
-npm init -y
-npm i -s cors dotenv express express-graphql graphql jsonwebtoken pg
-npm i -D nodemon standard
-```
-
-- pg: PostgreSQL client for Node.js. 
