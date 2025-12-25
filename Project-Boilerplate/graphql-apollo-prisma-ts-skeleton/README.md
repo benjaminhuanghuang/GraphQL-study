@@ -22,3 +22,11 @@ npx prisma init
 # creates prisma folder, .env and prisma.config.ts
 # add /generated/prisma to .gitignore
 ```
+
+Add model in prisma/schema.prisma
+
+Setup database
+
+```sh
+npx prisma migrate dev --name init
+```
