@@ -1,7 +1,7 @@
 import low from "lowdb";
 import FileSync from "lowdb/adapters/FileSync";
-import createPetModel from "./pet.js";
-import createUserModel from "./user.js";
+import createPetModel from "./pet";
+import createUserModel from "./user";
 
 const adapter = new FileSync("api/src/db/db.json");
 const db = low(adapter);
