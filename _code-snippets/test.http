@@ -1,0 +1,22 @@
+POST http://localhost:8964/graphql
+content-type: application/json
+
+{
+  "query":"query {hello}"
+}
+
+###
+POST http://localhost:8964/graphql
+content-type: application/json
+
+{
+  "query":"query {friend{id name}}"
+}
+
+###
+POST http://localhost:8964/graphql
+content-type: application/json
+
+{
+  "query":"mutation {createFriend(input:{name:\"ben\", gender: MALE}){id name gender}}"
+}

@@ -1,27 +1,26 @@
 // prisma/seed.ts
 
-import { PrismaClient } from '@prisma/client'
-import { tasks } from '../data/tasks'
-const prisma = new PrismaClient()
+import { tasks } from "../data/tasks";
+import { prisma } from "../lib/prisma";
 
 async function main() {
   await prisma.user.create({
     data: {
       email: `testemail@gmail.com`,
-      name: 'John Doe',
+      name: "John Doe",
     },
-  })
+  });
 
   await prisma.task.createMany({
     data: tasks,
-  })
+  });
 }
 
 main()
-  .catch(e => {
-    console.error(e)
-    process.exit(1)
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

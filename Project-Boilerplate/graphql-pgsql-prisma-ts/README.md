@@ -24,6 +24,8 @@
 ## Setting Up Prisma with PostgreSQL
 
 ```sh
+  npm i @prisma/adapter-pg pg
+
   npm i prisma -D
   npm i @prisma/client
 ```
