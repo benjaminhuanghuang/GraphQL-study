@@ -1,20 +1,27 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
+    /* Language and Environment */
+    "target": "ES2023", // Modern JS features (Node.js 16+)
+    "lib": ["ES2023"], // Use latest standard library
+    "module": "ESNext",
+    "moduleResolution": "node", // Resolve like Node does
+    "esModuleInterop": true, // Allow default import from CommonJS
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
+
+    /* Output */
+    // "rootDir": "./src", // Source code root
+
+    /* Strictness */
+    "strict": true, // Enable all strict type-checking
+    "noImplicitAny": true, // Disallow implicit `any`
+    "strictNullChecks": true, // Better null safety
+
+    /* Node.js Helpers */
+    "types": ["node"], // Include Node.js type definitions
+    "resolveJsonModule": true, // Allow `import data from './data.json'`
+    "allowSyntheticDefaultImports": true,
+    /* Source Maps (for debugging) */
+    "sourceMap": true // Generate .map files
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"] // Ignore these
 }

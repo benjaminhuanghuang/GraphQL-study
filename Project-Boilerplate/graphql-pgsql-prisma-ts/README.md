@@ -18,7 +18,7 @@
 ## Setup graphql
 
 ```sh
-  npm i graphql @apollo/server
+  npm i graphql @apollo/server graphql-tag
 ```
 
 ## Setting Up Prisma with PostgreSQL
@@ -27,7 +27,7 @@
   npm i @prisma/adapter-pg pg
 
   npm i prisma -D
-  npm i @prisma/client
+  npm i @prisma/client dotenv
 ```
 
 ```sh

@@ -1,9 +1,10 @@
 import { prisma } from "./lib/prisma";
+import { PrismaClient } from "./generated/prisma/client";
 
 export interface Context {
   prisma: PrismaClient;
 }
 
-export const context: Context = {
-  prisma: prisma,
+export const createContext = async (): Promise<Context> => {
+  return { prisma };
 };

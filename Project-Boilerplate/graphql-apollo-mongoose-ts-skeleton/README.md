@@ -5,7 +5,7 @@ Node v23.6+ supports Typescript
 ```sh
 npm init - y
 
-npm i graphql @apollo/server
+npm i graphql @apollo/server graphql-tag
 
 npm i -D typescript
 
