@@ -1,1 +1,0 @@
-## GraphQL Essential Training (LinkedIn)

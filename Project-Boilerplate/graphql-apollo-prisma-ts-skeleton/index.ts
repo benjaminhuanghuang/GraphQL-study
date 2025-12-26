@@ -39,14 +39,14 @@ const resolvers = {
   },
 };
 
-async function startApolloServer() {
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    introspection: true,
-  });
-  await startStandaloneServer(server);
-  console.log("Server is running!");
-}
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+});
 
-startApolloServer();
+const { url } = await startStandaloneServer(server, {
+  listen: { port: 4040 },
+});
+
+console.log(`🚀 Server ready at ${url}`);

@@ -3,7 +3,7 @@
     /* Language and Environment */
     "target": "ES2021", // Modern JS features (Node.js 16+)
     "lib": ["ES2021"], // Use latest standard library
-    "module": "CommonJS", // Node.js uses CommonJS (require/module.exports)
+    "module": "ESNext",
     "moduleResolution": "node", // Resolve like Node does
     "esModuleInterop": true, // Allow default import from CommonJS
     "forceConsistentCasingInFileNames": true,
