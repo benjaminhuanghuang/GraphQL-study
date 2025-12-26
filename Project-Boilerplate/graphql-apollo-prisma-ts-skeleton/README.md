@@ -35,6 +35,8 @@ npx prisma migrate dev --name init
 
 ## Test
 
+http://localhost:4000/graphql
+
 ```graphql
 mutation {
   addBook(title: "The Pragmatic Programmer", author: "Andrew Hunt") {
