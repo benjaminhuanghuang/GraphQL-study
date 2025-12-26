@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node api/src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,8 @@
   "type": "module",
   "dependencies": {
     "@apollo/server": "^5.2.0",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "nanoid": "^5.1.6"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
