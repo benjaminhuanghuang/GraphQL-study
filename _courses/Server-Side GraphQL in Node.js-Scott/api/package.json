@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node api/src/server.js"
+    "dev": "tsx --watch src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +13,7 @@
   "dependencies": {
     "@apollo/server": "^5.2.0",
     "graphql-tag": "^2.12.6",
-    "lowdb": "^7.0.1",
-    "nanoid": "^5.1.6"
+    "mongoose": "^9.0.2"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",

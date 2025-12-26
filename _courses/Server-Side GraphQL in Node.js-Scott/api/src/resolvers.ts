@@ -1,34 +1,42 @@
+import User from "./models/user";
+import Pet from "./models/pet";
+
 export default {
   Query: {
-    pets(_: any, { input }: any, { models }: any) {
-      return models.Pet.findMany(input || {});
+    pets: async (_: any, { input }: any) => {
+      return await Pet.find(input || {});
     },
-    pet(_: any, { id }: any, { models }: any) {
-      return models.Pet.findOne({ id });
+
+    pet: async (_: any, { id }: any) => {
+      return await Pet.findById(id);
     },
-    user(_: any, __: any, { models }: any) {
-      return models.User.findOne();
+
+    user: async (_: any, { id }: any) => {
+      return await User.findById(id);
     },
   },
+
   Mutation: {
-    addPet(_: any, { input }: any, { models, user }: any) {
-      const pet = models.Pet.create({ ...input, user: user.id });
+    addPet: async (_: any, { input }: any, { user }: any) => {
+      const pet = await Pet.create({ ...input, owner: user._id });
       return pet;
     },
   },
+
   Pet: {
-    owner(pet: any, _: any, { models }: any) {
-      return models.User.findOne({ id: pet.user });
+    owner: async (pet: any) => {
+      return await User.findById(pet.owner);
     },
-    img(pet: any) {
+    img: (pet: any) => {
       return pet.type === "DOG"
         ? "https://placedog.net/300/300"
         : "http://placekitten.com/300/300";
     },
   },
+
   User: {
-    pets(user: any, _: any, { models }: any) {
-      return models.Pet.findMany({ user: user.id });
+    pets: async (user: any) => {
+      return await Pet.find({ owner: user._id });
     },
   },
 };

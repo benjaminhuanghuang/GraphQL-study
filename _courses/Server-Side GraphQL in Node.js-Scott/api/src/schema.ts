@@ -1,4 +1,5 @@
 import { gql } from "graphql-tag";
+
 const typeDefs = gql`
   enum PetType {
     CAT
