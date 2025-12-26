@@ -5,7 +5,7 @@ import { buildSchema } from "graphql";
 import bodyParser from "body-parser";
 
 const app = express();
-const port = 4000;
+const port = 3333;
 app.use(bodyParser.json());
 
 const schema = buildSchema(`
