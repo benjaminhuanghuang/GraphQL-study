@@ -14,13 +14,6 @@ const schema = buildSchema(`
     song: Song
   }
 
-  type Mutation {
-    addSong(title: String!): Song
-    addLyricToSong(content: String!, songId: ID!): Song
-    likeLyric(id: ID!): Lyric
-    deleteSong(id: ID!): Song
-  }
-
   type Query {
     songs: [Song]
     song(id: ID!): Song
@@ -35,17 +28,10 @@ const schema = buildSchema(`
     deleteSong(id: ID!): Song
   }
 
-  type Query {
-    songs: [Song]
-    song(id: ID!): Song
-    lyrics: [Lyric]
-    lyric(id: ID!): Lyric
+  schema {
+    query: Query
+    mutation: Mutation
   }
-
-    schema {
-        query: Query
-        mutation: Mutation
-    }
 `);
 
 export default schema;

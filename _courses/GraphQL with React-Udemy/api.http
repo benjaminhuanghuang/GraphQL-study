@@ -1,0 +1,7 @@
+### Get songs
+POST http://localhost:4444/graphql
+Content-Type: application/json
+
+{
+  "query": "query { songs { id title lyrics { id content } } }"
+}
