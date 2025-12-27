@@ -9,6 +9,7 @@ const GET_SONGS = gql`
     }
   }
 `;
+
 const SongList = () => {
   const { loading, error, data } = useQuery(GET_SONGS);
 
