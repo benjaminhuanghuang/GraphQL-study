@@ -32,7 +32,17 @@ const resolvers = {
   },
   Song: {
     lyrics: async (song) => {
-      return await song.populate("lyrics");
+      // If lyrics are already populated or it's an array of IDs, populate them
+      if (
+        song.lyrics &&
+        song.lyrics.length > 0 &&
+        typeof song.lyrics[0] === "string"
+      ) {
+        const populated = await song.populate("lyrics");
+        return populated.lyrics;
+      }
+      // Return the lyrics array (could be empty or already populated)
+      return song.lyrics || [];
     },
   },
   Lyric: {
