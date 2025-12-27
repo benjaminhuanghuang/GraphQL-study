@@ -3,41 +3,41 @@ import Song from "../models/song.js";
 
 const resolvers = {
   Query: {
-    songs: () => {
-      return Song.find({});
+    songs: async () => {
+      return await Song.find({});
     },
-    song: (_, { id }) => {
-      return Song.findById(id);
+    song: async (_, { id }) => {
+      return await Song.findById(id);
     },
-    lyrics: () => {
-      return Lyric.find({});
+    lyrics: async () => {
+      return await Lyric.find({});
     },
-    lyric: (_, { id }) => {
-      return Lyric.findById(id);
+    lyric: async (_, { id }) => {
+      return await Lyric.findById(id);
     },
   },
   Mutation: {
-    addSong: (_, { title }) => {
-      return new Song({ title }).save();
+    addSong: async (_, { title }) => {
+      return await new Song({ title }).save();
     },
-    addLyricToSong: (_, { content, songId }) => {
-      return Song.addLyric(songId, content);
+    addLyricToSong: async (_, { content, songId }) => {
+      return await Song.addLyric(songId, content);
     },
-    likeLyric: (_, { id }) => {
-      return Lyric.like(id);
+    likeLyric: async (_, { id }) => {
+      return await Lyric.like(id);
     },
-    deleteSong: (_, { id }) => {
-      return Song.findByIdAndRemove(id);
+    deleteSong: async (_, { id }) => {
+      return await Song.findByIdAndRemove(id);
     },
   },
   Song: {
-    lyrics: (song) => {
-      return song.populate("lyrics");
+    lyrics: async (song) => {
+      return await song.populate("lyrics");
     },
   },
   Lyric: {
-    song: (lyric) => {
-      return lyric.populate("song");
+    song: async (lyric) => {
+      return await lyric.populate("song");
     },
   },
 };
