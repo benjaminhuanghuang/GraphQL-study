@@ -1,49 +1,35 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
-
-import bodyParser from "body-parser";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import typeDefs from "./src/graphql/types.js";
+import resolvers from "./src/graphql/resolvers.js";
+import mongoose from "mongoose";
 
 const app = express();
 const port = 3333;
-app.use(bodyParser.json());
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-const schema = buildSchema(`
-    type TestData {
-        text: String!
-        views: Int!
-    }
-
-    type RootQuery {
-        hello: TestData!
-    }
-
-    schema {
-        query: RootQuery
-    }
-`);
-
-const resolvers = {
-  hello() {
-    return {
-      text: "Hello World!",
-      views: 1024,
-    };
-  },
-};
+// serving static files
+app.use(express.static("public"));
 
 // Setup graphql endpoint
 app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
-    rootValue: resolvers,
     graphiql: true, // Enable GraphiQL interface
   })
 );
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}/graphql`);
-});
+mongoose
+  .connect("mongodb://localhost:27017/rest-to-graphql")
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}/graphql`);
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB", err);
+  });
 
-// Test: http://localhost:4000/graphql
+// Test: http://localhost:3333/graphql

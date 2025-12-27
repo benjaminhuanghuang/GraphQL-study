@@ -20,5 +20,7 @@ https://www.bilibili.com/video/BV1YF4m1L7sd
 ## Setup
 
 ```sh
-npm i mongoose graphql@15 express-graphql express
+npm i mongoose graphql@15 express-graphql express @graphql-tools/schema
 ```
+
+Create crmModel

@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export const ContactSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -11,7 +13,7 @@ export const ContactSchema = new mongoose.Schema({
     type: String,
   },
   company: {
-    typeof: String,
+    type: String,
   },
 });
 

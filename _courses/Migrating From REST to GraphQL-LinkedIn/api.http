@@ -1,0 +1,33 @@
+### Create Contact
+POST http://localhost:3333/graphql
+content-type: application/json
+
+{
+  "query":"mutation {createContact(input:{firstName:\"ben\", lastName:\"huang\", email:\"ben@example.com\", company:\"ExampleCo\"}){id firstName lastName email company}}"
+}
+
+
+### Get Contacts
+POST http://localhost:3333/graphql
+content-type: application/json  
+
+{
+  "query": "query { getContacts { id firstName lastName email company } }"
+}
+
+### Get One Contact
+POST http://localhost:3333/graphql
+content-type: application/json  
+
+{
+  "query": "query { getOneContact(id:\"694f441002c88be28e7595c3\") { id firstName lastName email company } }"
+}
+
+
+### Update Contact
+POST http://localhost:3333/graphql
+content-type: application/json
+
+{
+  "query":"mutation {updateContact(input:{id:\"694f441002c88be28e7595c3\", firstName:\"zzzz\", lastName:\"zzzz\", email:\"ben@example.com\", company:\"ExampleCo\"}){id firstName lastName email company}}"
+}
