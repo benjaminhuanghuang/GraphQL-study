@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client/react";
 
-const GET_SONGS = gql`
+export const GET_SONGS = gql`
   query GetSongs {
     songs {
       id

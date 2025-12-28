@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client/react";
+import { GET_SONGS } from "./SongList";
 
 // AddSong names the mutation operation for the client,
 // while addSong is the actual server mutation being executed.
