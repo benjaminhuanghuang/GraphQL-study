@@ -39,3 +39,12 @@ Content-Type: application/json
 {
   "query": "mutation { addLyricToSong(content: \"New lyric\", songId: \"695073fb2b6732c0324605d5\") { id title lyrics { id content } } }"
 }
+
+
+### Like Lyric
+POST http://localhost:4444/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { likeLyric(id: \"6950b130d2cf6c24908db36a\") {id likes} }"
+}
