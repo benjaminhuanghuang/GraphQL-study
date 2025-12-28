@@ -33,7 +33,7 @@ const SongList = () => {
       <ul>
         {data.songs.map((song) => (
           <li key={song.id}>
-            {song.title}
+            <Link to={`/songs/${song.id}`}>{song.title}</Link>
             <i
               className="material-icons"
               style={{ cursor: "pointer", marginLeft: "10px" }}
