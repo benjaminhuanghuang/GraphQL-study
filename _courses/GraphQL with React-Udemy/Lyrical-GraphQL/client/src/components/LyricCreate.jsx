@@ -7,6 +7,7 @@ const ADD_LYRIC_TO_SONG = gql`
     addLyricToSong(content: $content, songId: $songId) {
       id
       lyrics {
+        id
         content
       }
     }
@@ -15,14 +16,16 @@ const ADD_LYRIC_TO_SONG = gql`
 
 const LyricCreate = ({ songId }) => {
   const [content, setContent] = useState("");
+  const [addLyricToSong, { data, loading, error }] =
+    useMutation(ADD_LYRIC_TO_SONG);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle lyric submission
-    const [addLyricToSong] = useMutation(ADD_LYRIC_TO_SONG);
+
     await addLyricToSong({
       variables: { content, songId },
     });
+
     setContent("");
   };
 
@@ -34,7 +37,9 @@ const LyricCreate = ({ songId }) => {
         onChange={(e) => setContent(e.target.value)}
         placeholder="Enter lyric content"
       />
-      <button type="submit">Add Lyric</button>
+      <button type="submit" onClick={handleSubmit} disabled={loading}>
+        Add Lyric
+      </button>
     </form>
   );
 };
