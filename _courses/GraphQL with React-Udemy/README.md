@@ -6,6 +6,8 @@ https://www.udemy.com/course/graphql-with-react-course
 
 https://github.com/StephenGrider/Lyrical-GraphQL
 
+https://github.com/StephenGrider/auth-GraphQL-starter
+
 P1: https://www.bilibili.com/video/BV1nFdKYYEXA
 P2: https://www.bilibili.com/video/BV1nFdKYYEN5
 
