@@ -32,3 +32,14 @@ Content-Type: application/json
 {
   "query": "query { song(id: \"695073fb2b6732c0324605d5\") { id title lyrics { id content } } }"
 }
+
+
+
+
+### Add Lyric
+POST http://localhost:4444/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { addLyricToSong(content: \"New lyric\", songId: \"695073fb2b6732c0324605d5\") { id title lyrics { id content } } }"
+}

@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useQuery, useMutation } from "@apollo/client/react";
+import LyricCreate from "./LyricCreate";
 
 export const SONG = gql`
   query Song($id: ID!) {
@@ -22,7 +23,9 @@ const SongDetail = () => {
 
   return (
     <div>
+      <Link to="/">Back</Link>
       <h2>{data.song.title}</h2>
+      <LyricCreate songId={data.song.id} />
     </div>
   );
 };
