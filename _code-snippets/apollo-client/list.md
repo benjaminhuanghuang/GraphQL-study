@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+# List
+
+```js
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client/react";
 
 const GET_SONGS = gql`
-  query GetSongs {
+  {
     songs {
       id
       title
@@ -25,9 +27,9 @@ const SongList = () => {
           <li key={song.id}>{song.title}</li>
         ))}
       </ul>
-      <Link to="/songs/new">Add a New Song</Link>
     </div>
   );
 };
 
 export default SongList;
+```

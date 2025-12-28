@@ -1,5 +1,7 @@
+# Create
+
+```js
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client/react";
 
@@ -15,25 +17,21 @@ const ADD_SONG = gql`
 
 const SongCreate = () => {
   const [title, setTitle] = useState("");
-  const navigate = useNavigate();
-
   // useMutation turns the GraphQL document into a callable function
   const [addSong] = useMutation(ADD_SONG);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    await addSong({
+    addSong({
       variables: { title },
-      refetchQueries: [{ query: GET_SONGS }],
     });
+
     setTitle("");
-    navigate("/");
   };
 
   return (
     <div>
-      <Link to="/">Back</Link>
       <h3>Create a New Song</h3>
       <form onSubmit={handleSubmit}>
         <label>Song Title:</label>
@@ -49,3 +47,4 @@ const SongCreate = () => {
 };
 
 export default SongCreate;
+```
