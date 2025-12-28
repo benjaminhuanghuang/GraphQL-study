@@ -21,7 +21,7 @@ export const DELETE_SONG = gql`
 `;
 
 const SongList = () => {
-  const { loading, error, data } = useQuery(GET_SONGS);
+  const { loading, error, data, refetch } = useQuery(GET_SONGS);
   const [deleteSong] = useMutation(DELETE_SONG);
 
   if (loading) return <p>Loading...</p>;
@@ -37,12 +37,12 @@ const SongList = () => {
             <i
               className="material-icons"
               style={{ cursor: "pointer", marginLeft: "10px" }}
-              onClick={() =>
-                deleteSong({
+              onClick={async () => {
+                await deleteSong({
                   variables: { id: song.id },
-                  refetchQueries: [{ query: GET_SONGS }],
-                })
-              }
+                });
+                await refetch();
+              }}
             >
               X
             </i>
