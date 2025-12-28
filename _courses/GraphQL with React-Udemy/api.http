@@ -22,3 +22,13 @@ Content-Type: application/json
 {
   "query": "mutation { deleteSong(id: \"695077f72b6732c0324605de\") { id title lyrics { id content } } }"
 }
+
+
+
+### Song
+POST http://localhost:4444/graphql
+Content-Type: application/json
+
+{
+  "query": "query { song(id: \"695073fb2b6732c0324605d5\") { id title lyrics { id content } } }"
+}
