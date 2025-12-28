@@ -15,3 +15,10 @@ Content-Type: application/json
   "query": "mutation { addSong(title: \"New Song\") { id title lyrics { id content } } }"
 }
 
+### Delete songs
+POST http://localhost:4444/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { deleteSong(id: \"695077f72b6732c0324605de\") { id title lyrics { id content } } }"
+}

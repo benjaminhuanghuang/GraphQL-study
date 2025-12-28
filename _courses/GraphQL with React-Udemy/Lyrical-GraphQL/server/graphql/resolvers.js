@@ -27,7 +27,7 @@ const resolvers = {
       return await Lyric.like(id);
     },
     deleteSong: async (_, { id }) => {
-      return await Song.findByIdAndRemove(id);
+      return await Song.findByIdAndDelete(id);
     },
   },
   Song: {
