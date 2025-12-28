@@ -4,7 +4,7 @@ import Song from "../models/song.js";
 const resolvers = {
   Query: {
     songs: async () => {
-      return await Song.find({});
+      return await Song.find();
     },
     song: async (_, { id }) => {
       return await Song.findById(id);
@@ -31,21 +31,15 @@ const resolvers = {
     },
   },
   Song: {
+    id: (song) => song._id.toString(),
     lyrics: async (song) => {
-      // If lyrics are already populated or it's an array of IDs, populate them
-      if (
-        song.lyrics &&
-        song.lyrics.length > 0 &&
-        typeof song.lyrics[0] === "string"
-      ) {
-        const populated = await song.populate("lyrics");
-        return populated.lyrics;
-      }
-      // Return the lyrics array (could be empty or already populated)
-      return song.lyrics || [];
+      if (!song.lyrics || song.lyrics.length === 0) return [];
+      const populated = await song.populate("lyrics");
+      return populated.lyrics;
     },
   },
   Lyric: {
+    id: (lyric) => lyric._id.toString(),
     song: async (lyric) => {
       return await lyric.populate("song");
     },
