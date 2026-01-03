@@ -1,5 +1,4 @@
 import { ApolloServer, PubSub } from "@apollo/server";
-import { PrismaClient } from "@prisma/client";
 import Query from "./resolvers/Query.js";
 import Mutation from "./resolvers/Mutation.js";
 import Subscription from "./resolvers/Subscription.js";
@@ -32,7 +31,7 @@ const server = new ApolloServer({
   context: ({ req }) => {
     return {
       ...req,
-      prisma,
+      prisma, // prisma is accessible in all resolvers via context
       pubsub,
       userId: req && req.headers.authorization ? getUserId(req) : null,
     };
