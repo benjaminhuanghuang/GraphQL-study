@@ -11,5 +11,14 @@ POST http://localhost:4000/graphql
 Content-Type: application/json
 
 {
-  "query" : "{feed }"
+  "query" : "{feed { id url description } }"
+}
+
+
+### 
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query" : "mutation{signup(name: \"Test User\", email: \"test@example.com\", password: \"password\") { token user { id name email } } }"
 }
