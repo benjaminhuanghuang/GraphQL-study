@@ -1,4 +1,4 @@
-import { ApolloServer, PubSub } from "apollo-server";
+import { ApolloServer, PubSub } from "@apollo/server";
 import { PrismaClient } from "@prisma/client";
 import Query from "./resolvers/Query.js";
 import Mutation from "./resolvers/Mutation.js";
