@@ -10,15 +10,12 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getUserId } from "./utils.js";
+import { prisma } from "./lib/prisma.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const pubsub = new PubSub();
-
-const prisma = new PrismaClient({
-  errorFormat: "minimal",
-});
 
 const resolvers = {
   Query,
