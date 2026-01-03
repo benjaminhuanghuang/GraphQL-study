@@ -1,7 +1,8 @@
-export function link(parent, args, context) {
-  return context.prisma.vote.findUnique({ where: { id: parent.id } }).link();
-}
-
-export function user(parent, args, context) {
-  return context.prisma.vote.findUnique({ where: { id: parent.id } }).user();
-}
+export default {
+  link: (parent, args, context) => {
+    return context.prisma.vote.findUnique({ where: { id: parent.id } }).link();
+  },
+  user: (parent, args, context) => {
+    return context.prisma.vote.findUnique({ where: { id: parent.id } }).user();
+  },
+};

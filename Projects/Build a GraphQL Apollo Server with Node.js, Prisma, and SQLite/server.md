@@ -2,7 +2,7 @@
 
 ```sh
 npm init -y
-npm i graphql @apollo/server bcryptjs jsonwebtoken
+npm i graphql @apollo/server graphql-subscriptions bcryptjs jsonwebtoken
 ```
 
 ## DB

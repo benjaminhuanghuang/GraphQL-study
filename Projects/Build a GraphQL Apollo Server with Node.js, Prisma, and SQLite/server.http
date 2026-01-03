@@ -1,0 +1,15 @@
+###
+POST http://localhost:4000/graphql
+content-type: application/json
+
+{
+  "query": "mutation { post(url: \"abc.com\", description: \"A description\") { id url description } }"
+}
+
+### 
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query" : "{feed }"
+}

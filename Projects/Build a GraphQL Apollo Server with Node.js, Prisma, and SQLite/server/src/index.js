@@ -1,4 +1,7 @@
-import { ApolloServer, PubSub } from "@apollo/server";
+import { ApolloServer } from "@apollo/server";
+import { PubSub } from "graphql-subscriptions";
+import { startStandaloneServer } from "@apollo/server/standalone";
+
 import Query from "./resolvers/Query.js";
 import Mutation from "./resolvers/Mutation.js";
 import Subscription from "./resolvers/Subscription.js";
@@ -28,6 +31,10 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs: fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8"),
   resolvers,
+});
+
+const { url } = await startStandaloneServer(server, {
+  listen: { port: 4000 },
   context: ({ req }) => {
     return {
       ...req,
@@ -52,4 +59,4 @@ const server = new ApolloServer({
   },
 });
 
-server.listen().then(({ url }) => console.log(`Server is running on ${url}`));
+console.log(`🚀 Server ready at ${url}`);
