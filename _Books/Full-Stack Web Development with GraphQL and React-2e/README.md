@@ -4,6 +4,8 @@ by Sebastian Grebe, 2022
 
 Taking React from frontend to full-stack with GraphQL and Apollo
 
+[Code](https://github.com/PacktPublishing/Full-Stack-Web-Development-with-GraphQL-and-React-Second-Edition/tree/main)
+
 ## Table of contents
 
 ### Section 1: Building the Stack
