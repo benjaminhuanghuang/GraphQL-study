@@ -1,121 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import { Helmet } from "react-helmet";
 
-function App() {
-  const [count, setCount] = useState(0)
+const initialPosts = [
+  {
+    id: 2,
+    text: "Lorem ipsum",
+    user: {
+      avatar: "/uploads/avatar1.png",
+      username: "Test User",
+    },
+  },
+  {
+    id: 1,
+    text: "Lorem ipsum",
+    user: {
+      avatar: "/uploads/avatar2.png",
+      username: "Test User 2",
+    },
+  },
+];
+
+const App = () => {
+  const [posts, setPosts] = useState(initialPosts);
+  const [postContent, setPostContent] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newPost = {
+      id: posts.length + 1,
+      text: postContent,
+      user: {
+        avatar: "/uploads/avatar1.png",
+        username: "Fake User",
+      },
+    };
+    setPosts([newPost, ...posts]);
+    setPostContent("");
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="container">
+      <Helmet>
+        <title>Graphbook - Feed</title>
+        <meta
+          name="description"
+          content="Newsfeed of all your friends on Graphbook"
+        />
+      </Helmet>
+      <div className="postForm">
+        <form onSubmit={handleSubmit}>
+          <textarea
+            value={postContent}
+            onChange={(e) => setPostContent(e.target.value)}
+            placeholder="Write your custom post!"
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <div className="feed">
+        {posts.map((post, i) => (
+          <div key={post.id} className="post">
+            <div className="header">
+              <img src={post.user.avatar} />
+              <h2>{post.user.username}</h2>
+            </div>
+            <p className="content">{post.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
-}
-
-export default App
+export default App;
