@@ -1,14 +1,15 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import helmet from "helmet";
 import cors from "cors";
-import compress from "compression";
-import services from "./services";
+import services from "./services/index.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const root = path.join(__dirname, "../../");
 
 const app = express();
-app.use(compress());
 if (process.env.NODE_ENV === "production") {
   app.use(helmet());
   app.use(

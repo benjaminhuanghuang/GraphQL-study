@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import Resolvers from "./resolvers";
-import Schema from "./schema";
+import Resolvers from "./resolvers.js";
+import Schema from "./schema.js";
 
 const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
