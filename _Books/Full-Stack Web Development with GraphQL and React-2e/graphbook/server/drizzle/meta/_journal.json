@@ -8,6 +8,13 @@
       "when": 1774507375926,
       "tag": "0000_tough_thing",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1774551655793,
+      "tag": "0001_previous_leo",
+      "breakpoints": true
     }
   ]
 }

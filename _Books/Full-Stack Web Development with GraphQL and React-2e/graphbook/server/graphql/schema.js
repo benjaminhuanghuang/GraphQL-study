@@ -1,14 +1,14 @@
 export const typeDefs = `#graphql
-   type Post {
-    id: Int
-    text: String
-    user: User
-  }
-
   type User {
     id: Int
     avatar: String
     username: String
+  }
+
+  type Post {
+    id: Int
+    text: String
+    user: User
   }
 
   type Message {
@@ -43,9 +43,8 @@ export const typeDefs = `#graphql
     chatId: Int!
   }
 
-
   type RootMutation {
-   addPost (
+    addPost (
       post: PostInput!
     ): Post
     addChat (
