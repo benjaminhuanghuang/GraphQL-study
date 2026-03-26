@@ -1,10 +1,4 @@
-const {
-  pgTable,
-  serial,
-  varchar,
-  integer,
-  text,
-} = require("drizzle-orm/pg-core");
+import { pgTable, serial, varchar, integer, text } from "drizzle-orm/pg-core";
 
 // Define the users table
 const users = pgTable("users", {

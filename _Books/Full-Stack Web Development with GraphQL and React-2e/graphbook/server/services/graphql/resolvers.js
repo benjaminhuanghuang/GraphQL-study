@@ -1,40 +1,36 @@
-import logger from "../helpers/logger.js";
+import { db } from "../../db/index.js";
+import { posts } from "../../db/schema.js";
+import { sql } from "drizzle-orm";
 
-let posts = [
-  {
-    id: 2,
-    text: "Lorem ipsum",
-    user: {
-      avatar: "/uploads/avatar1.png",
-      username: "Test User",
-    },
-  },
-  {
-    id: 1,
-    text: "Lorem ipsum",
-    user: {
-      avatar: "/uploads/avatar2.png",
-      username: "Test User 2",
-    },
-  },
-];
+import logger from "../helpers/logger.js";
 
 const resolvers = {
   RootQuery: {
-    posts(root, args, context) {
-      return posts;
-    },
+    posts: async () => await db.select().from(posts),
   },
   RootMutation: {
-    addPost(root, { post, user }, context) {
-      const postObject = {
-        ...post,
-        user,
-        id: posts.length + 1,
-      };
-      posts.push(postObject);
-      logger.log({ level: "info", message: "Post was created" });
-      return postObject;
+    addPost: async (root, { post, userId }) => {
+      try {
+        // Insert the new post into the database
+        const [newPost] = await db
+          .insert(posts)
+          .values({
+            text: post.text,
+            user_id: userId,
+          })
+          .returning(); // Drizzle returns the inserted row
+
+        logger.info("Post was created");
+
+        // Optionally attach the user info if needed
+        return {
+          ...newPost,
+          user: { id: userId },
+        };
+      } catch (error) {
+        logger.error("Failed to create post", { error });
+        throw new Error("Failed to create post");
+      }
     },
   },
 };
