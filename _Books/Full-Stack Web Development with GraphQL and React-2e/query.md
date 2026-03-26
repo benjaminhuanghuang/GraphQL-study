@@ -22,4 +22,11 @@ mutation AddPost {
     }
   }
 }
+
+mutation {
+  deletePost(postId: 3) {
+    success
+  }
+}
+
 ```

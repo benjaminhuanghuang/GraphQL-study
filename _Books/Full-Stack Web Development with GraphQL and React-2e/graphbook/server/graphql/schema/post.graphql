@@ -7,10 +7,6 @@ type PostFeed {
   posts: [Post]
 }
 
-type Response {
-  success: Boolean
-}
-
 input PostInput {
   text: String!
 }
