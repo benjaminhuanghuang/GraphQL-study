@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { gql } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client/react";
 
 const GET_CHAT = gql`
   query chat($chatId: Int!) {
@@ -93,7 +94,7 @@ const Chat = (props) => {
         </button>
       </div>
       <div className="messages">
-        {chat.messages.map((message, j) => (
+        {chat.messages.map((message) => (
           <div
             key={"message" + message.id}
             className={"message " + (message.user.id > 1 ? "left" : "right")}

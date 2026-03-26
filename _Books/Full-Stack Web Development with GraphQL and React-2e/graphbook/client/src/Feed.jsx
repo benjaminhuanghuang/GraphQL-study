@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { gql } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client/react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const GET_POSTS = gql`
@@ -138,7 +139,7 @@ const Feed = () => {
             </div>
           }
         >
-          {posts.map((post, i) => (
+          {posts.map((post) => (
             <div
               key={post.id}
               className={"post " + (post.id < 0 ? "optimistic" : "")}
