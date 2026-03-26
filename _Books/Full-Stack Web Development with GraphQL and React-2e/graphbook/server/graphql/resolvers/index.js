@@ -1,3 +1,4 @@
+import { userResolvers } from "./user.js";
 import { postResolvers } from "./post.js";
 import { chatResolvers } from "./chat.js";
 import { messageResolvers } from "./message.js";

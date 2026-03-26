@@ -9,3 +9,7 @@ input MessageInput {
   text: String!
   chatId: Int!
 }
+
+extend type RootMutation {
+  addMessage(message: MessageInput!): Message
+}

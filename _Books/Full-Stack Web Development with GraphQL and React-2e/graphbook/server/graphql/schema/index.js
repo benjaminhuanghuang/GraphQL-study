@@ -1,15 +1,10 @@
+import { loadFilesSync } from "@graphql-tools/load-files";
 import { mergeTypeDefs } from "@graphql-tools/merge";
+import { fileURLToPath } from "url";
+import path from "path";
 
-import userTypeDefs from "./user.graphql";
-import postTypeDefs from "./post.graphql";
-import messageTypeDefs from "/message.graphql";
-import chatTypeDefs from "./chat.graphql";
-
-const typeDefs = mergeTypeDefs([
-  userTypeDefs,
-  postTypeDefs,
-  messageTypeDefs,
-  chatTypeDefs,
-]);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const typesArray = loadFilesSync(path.join(__dirname, "./*.graphql"));
+const typeDefs = mergeTypeDefs(typesArray);
 
 export default typeDefs;

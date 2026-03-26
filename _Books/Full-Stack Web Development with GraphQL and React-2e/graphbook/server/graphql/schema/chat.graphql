@@ -7,3 +7,12 @@ type Chat {
 input ChatInput {
   users: [Int]
 }
+
+extend type RootQuery {
+  chats: [Chat]
+  chat(chatId: Int): Chat
+}
+
+extend type RootMutation {
+  addChat(chat: ChatInput!): Chat
+}
