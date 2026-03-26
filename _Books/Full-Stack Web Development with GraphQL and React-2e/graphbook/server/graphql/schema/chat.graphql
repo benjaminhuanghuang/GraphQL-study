@@ -1,0 +1,9 @@
+type Chat {
+  id: Int
+  messages: [Message]
+  users: [User]
+}
+
+input ChatInput {
+  users: [Int]
+}

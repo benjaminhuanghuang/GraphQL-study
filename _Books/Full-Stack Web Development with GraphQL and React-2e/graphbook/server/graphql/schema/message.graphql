@@ -1,0 +1,11 @@
+type Message {
+  id: Int
+  text: String
+  chat: Chat
+  user: User
+}
+
+input MessageInput {
+  text: String!
+  chatId: Int!
+}
