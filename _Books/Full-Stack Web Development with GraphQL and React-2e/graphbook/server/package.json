@@ -11,12 +11,11 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@graphql-tools/schema": "^10.0.29",
-    "apollo-server-express": "^3.13.0",
+    "@apollo/server": "^5.5.0",
+    "body-parser": "^2.2.2",
     "cors": "^2.8.6",
-    "express": "^4.21.2",
-    "graphql": "^16.11.0",
-    "helmet": "^8.1.0",
+    "express": "^5.2.1",
+    "graphql": "^16.13.2",
     "winston": "^3.19.0"
   }
 }

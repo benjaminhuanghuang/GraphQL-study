@@ -1,0 +1,7 @@
+###
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query": "{ hello }"
+}
