@@ -1,10 +1,21 @@
 import { pgTable, serial, varchar, integer, text } from "drizzle-orm/pg-core";
 
-// Define the users table
 const users = pgTable("users", {
   id: serial("id").primaryKey(),
   avatar: varchar("avatar", { length: 255 }),
   username: varchar("username", { length: 255 }).notNull(),
+});
+
+const posts = pgTable("posts", {
+  id: serial("id").primaryKey(),
+  text: text("text").notNull(),
+
+  user_id: integer("user_id")
+    .notNull()
+    .references(() => users.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
 });
 
 const chats = pgTable("chats", {
@@ -23,18 +34,6 @@ const messages = pgTable("messages", {
   chat_id: integer("chat_id")
     .references(() => chats.id)
     .notNull(),
-});
-
-const posts = pgTable("posts", {
-  id: serial("id").primaryKey(),
-  text: text("text").notNull(),
-
-  user_id: integer("user_id")
-    .notNull()
-    .references(() => users.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
 });
 
 export const usersChats = pgTable("users_chats", {
