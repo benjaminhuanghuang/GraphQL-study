@@ -15,6 +15,13 @@
       "when": 1774551655793,
       "tag": "0001_previous_leo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1774552754710,
+      "tag": "0002_hesitant_sasquatch",
+      "breakpoints": true
     }
   ]
 }

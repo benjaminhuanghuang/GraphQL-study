@@ -7,13 +7,13 @@ import {
   timestamp,
 } from "drizzle-orm/pg-core";
 
-const users = pgTable("users", {
+export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   avatar: varchar("avatar", { length: 255 }),
   username: varchar("username", { length: 255 }).notNull(),
 });
 
-const posts = pgTable("posts", {
+export const posts = pgTable("posts", {
   id: serial("id").primaryKey(),
   text: text("text").notNull(),
 
@@ -25,14 +25,14 @@ const posts = pgTable("posts", {
     }),
 });
 
-const chats = pgTable("chats", {
+export const chats = pgTable("chats", {
   id: serial("id").primaryKey(),
-  first_name: varchar("first_name", { length: 255 }).notNull(),
-  last_name: varchar("last_name", { length: 255 }).notNull(),
-  email: varchar("email", { length: 255 }).notNull(),
+  first_name: varchar("first_name"),
+  last_name: varchar("last_name"),
+  email: varchar("email"),
 });
 
-const messages = pgTable("messages", {
+export const messages = pgTable("messages", {
   id: serial("id").primaryKey(),
   text: varchar("text", { length: 255 }).notNull(),
   user_id: integer("user_id")
@@ -51,8 +51,4 @@ export const usersChats = pgTable("users_chats", {
   chat_id: integer("chat_id")
     .notNull()
     .references(() => chats.id, { onDelete: "cascade", onUpdate: "cascade" }),
-  created_at: timestamp("created_at").notNull().defaultNow(),
-  updated_at: timestamp("updated_at").notNull().defaultNow(),
 });
-
-export { users, messages, posts, chats };
