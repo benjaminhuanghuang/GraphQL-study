@@ -15,7 +15,7 @@ export class PostService {
   async createPost({ text, userId }) {
     const [post] = await this.db
       .insert(posts)
-      .values({ text, userId })
+      .values({ text, user_id: userId })
       .returning();
 
     return post;

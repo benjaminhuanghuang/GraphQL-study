@@ -1,17 +1,22 @@
 export const postResolvers = {
-  Query: {
+  RootQuery: {
     posts: (_, __, { services }) => {
       return services.postService.getAllPosts();
     },
   },
 
-  Mutation: {
-    addPost: async (_, { text }, { services, user }) => {
-      if (!user) throw new Error("Unauthorized");
+  RootMutation: {
+    addPost: async (_, { post, user }, { services }) => {
+      const existingUser = await services.userService.getUserByUsername(
+        user.username,
+      );
+
+      const targetUser =
+        existingUser ?? (await services.userService.createUser(user));
 
       return services.postService.createPost({
-        text,
-        userId: user.id,
+        text: post.text,
+        userId: targetUser.id,
       });
     },
   },

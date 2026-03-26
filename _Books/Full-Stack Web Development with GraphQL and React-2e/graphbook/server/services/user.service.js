@@ -16,6 +16,15 @@ export class UserService {
     return user;
   }
 
+  async getUserByUsername(username) {
+    const [user] = await this.db
+      .select()
+      .from(users)
+      .where(eq(users.username, username));
+
+    return user;
+  }
+
   async createUser({ username, avatar }) {
     const [user] = await this.db
       .insert(users)
