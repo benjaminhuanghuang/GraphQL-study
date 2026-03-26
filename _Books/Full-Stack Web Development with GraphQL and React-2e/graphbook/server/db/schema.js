@@ -39,4 +39,4 @@ const posts = pgTable("posts", {
     .notNull(),
 });
 
-export { users, messages, posts };
+export { users, messages, posts, chats };
