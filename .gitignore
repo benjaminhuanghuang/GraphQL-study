@@ -2,3 +2,9 @@
 node_modules/
 package-lock.json
 *.lock
+*.log
+dist/
+build/
+coverage/
+.env
+.idea/
