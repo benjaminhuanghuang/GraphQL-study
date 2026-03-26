@@ -10,8 +10,8 @@ export const chatResolvers = {
       return db
         .select()
         .from(db.users)
-        .innerJoin(db.usersChats, eq(db.users.id, db.usersChats.userId))
-        .where(eq(db.usersChats.chatId, chat.id));
+        .innerJoin(db.usersChats, eq(db.users.id, db.usersChats.user_id))
+        .where(eq(db.usersChats.chat_id, chat.id));
     },
   },
   RootQuery: {
@@ -25,10 +25,11 @@ export const chatResolvers = {
   RootMutation: {
     addChat: async (_root, { chat }, { db }) => {
       const [newChat] = await db.insert(db.chats).values({}).returning();
-      // 插入多对多关联
       await Promise.all(
         chat.users.map((userId) =>
-          db.insert(db.usersChats).values({ userId, chatId: newChat.id }),
+          db
+            .insert(db.usersChats)
+            .values({ user_id: userId, chat_id: newChat.id }),
         ),
       );
       return newChat;

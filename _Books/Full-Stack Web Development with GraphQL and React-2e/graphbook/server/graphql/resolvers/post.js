@@ -4,7 +4,7 @@ export const postResolvers = {
       return db
         .select()
         .from(db.users)
-        .where(eq(db.users.id, post.userId))
+        .where(eq(db.users.id, post.user_id))
         .get();
     },
   },
@@ -25,7 +25,7 @@ export const postResolvers = {
 
       return services.postService.createPost({
         text: post.text,
-        userId: targetUser.id,
+        user_id: targetUser.id,
       });
     },
   },
