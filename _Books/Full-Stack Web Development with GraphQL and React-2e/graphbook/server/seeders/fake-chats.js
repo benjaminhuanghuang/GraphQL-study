@@ -4,8 +4,7 @@ import { chats } from "../db/schema.js";
 export const up = async () => {
   await db.insert(chats).values([
     {
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      email: "ben@example.com",
     },
   ]);
 };

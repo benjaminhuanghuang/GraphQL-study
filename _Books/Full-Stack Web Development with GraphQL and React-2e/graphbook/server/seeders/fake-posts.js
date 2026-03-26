@@ -8,14 +8,10 @@ export const up = async () => {
     {
       text: "Post 1",
       user_id: allUsers[0].id,
-      created_at: new Date(),
-      updated_at: new Date(),
     },
     {
       text: "Post 2",
       user_id: allUsers[1].id,
-      created_at: new Date(),
-      updated_at: new Date(),
     },
   ]);
 };

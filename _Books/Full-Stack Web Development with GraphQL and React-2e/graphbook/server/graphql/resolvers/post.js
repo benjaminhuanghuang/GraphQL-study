@@ -1,11 +1,7 @@
 export const postResolvers = {
   Post: {
-    user: async (post, args, { db }) => {
-      return db
-        .select()
-        .from(db.users)
-        .where(eq(db.users.id, post.user_id))
-        .get();
+    user: async (post, args, { services }) => {
+      return services.userService.getUserById(post.user_id);
     },
   },
   RootQuery: {
