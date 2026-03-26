@@ -1,26 +1,15 @@
 export const messageResolvers = {
   Message: {
-    user: async (message, _args, { db }) => {
-      return db
-        .select()
-        .from(db.users)
-        .where(eq(db.users.id, message.userId))
-        .get();
+    user: async (message, _args, { services }) => {
+      return services.userService.getUserById(message.user_id);
     },
     chat: async (message, _args, { db }) => {
-      return db
-        .select()
-        .from(db.chats)
-        .where(eq(db.chats.id, message.chatId))
-        .get();
+      return services.chatService.getChatById(message.chat_id);
     },
   },
   RootMutation: {
-    addMessage: async (_root, { message }, { db }) => {
-      const [newMessage] = await db
-        .insert(db.messages)
-        .values(message)
-        .returning();
+    addMessage: async (_root, { message }, { services }) => {
+      const newMessage = await services.messageService.createMessage(message);
       return newMessage;
     },
   },

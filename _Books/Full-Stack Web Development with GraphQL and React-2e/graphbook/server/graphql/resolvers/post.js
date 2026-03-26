@@ -4,6 +4,7 @@ export const postResolvers = {
       return services.userService.getUserById(post.user_id);
     },
   },
+
   RootQuery: {
     posts: (_, __, { services }) => {
       return services.postService.getAllPosts();
