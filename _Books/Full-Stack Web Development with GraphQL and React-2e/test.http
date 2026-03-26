@@ -12,5 +12,5 @@ POST http://localhost:4000/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation AddPost { addPost(post: { text: \"Hello world from GraphQL\" }, user: { username: \"alice\", avatar: \"https://example.com/avatar.png\" }) { id text user { username avatar } } }"
+  "query": "mutation AddPost { addPost(post: { text: \"Hello world from GraphQL\" }) { id text user { username avatar } } }"
 }

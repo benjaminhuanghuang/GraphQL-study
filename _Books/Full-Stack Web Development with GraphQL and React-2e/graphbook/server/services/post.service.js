@@ -27,12 +27,10 @@ export class PostService {
     return query;
   }
 
-  async createPost({ text, user_id, userId }) {
-    const authorId = user_id ?? userId;
-
+  async createPost({ text, userId }) {
     const [post] = await this.db
       .insert(posts)
-      .values({ text, user_id: authorId })
+      .values({ text, user_id: userId })
       .returning();
 
     return post;

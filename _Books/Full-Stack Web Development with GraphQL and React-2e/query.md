@@ -13,10 +13,7 @@ query {
 
 // Add post
 mutation AddPost {
-  addPost(
-    post: { text: "Hello world from GraphQL" }
-    user: { username: "alice", avatar: "https://example.com/avatar.png" }
-  ) {
+  addPost(post: { text: "Hello world from GraphQL" }) {
     id
     text
     user {

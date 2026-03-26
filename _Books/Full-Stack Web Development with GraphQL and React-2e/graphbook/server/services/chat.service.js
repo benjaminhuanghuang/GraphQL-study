@@ -13,6 +13,20 @@ export class ChatService {
     return this.db.select().from(chats);
   }
 
+  async addChat(chatInput) {
+    const [newChat] = await this.db.insert(chats).values({}).returning();
+
+    //  modify usersChats
+    if (chatInput.users && chatInput.users.length > 0) {
+      const userChatRows = chatInput.users.map((userId) => ({
+        chatId: newChat.id,
+        userId,
+      }));
+
+      await this.db.insert(usersChats).values(userChatRows);
+    }
+  }
+
   async getChatById(id) {
     const [chat] = await this.db.select().from(chats).where(eq(chats.id, id));
     return chat;
