@@ -37,4 +37,16 @@ const posts = pgTable("posts", {
     }),
 });
 
+export const usersChats = pgTable("users_chats", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade", onUpdate: "cascade" }),
+  chatId: integer("chat_id")
+    .notNull()
+    .references(() => chats.id, { onDelete: "cascade", onUpdate: "cascade" }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 export { users, messages, posts, chats };
