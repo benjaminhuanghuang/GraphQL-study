@@ -1,5 +1,5 @@
-const typeDefinitions = `
-  type Post {
+export const typeDefs = `#graphql
+   type Post {
     id: Int
     text: String
     user: User
@@ -35,5 +35,3 @@ const typeDefinitions = `
     mutation: RootMutation
   }
 `;
-
-export default [typeDefinitions];

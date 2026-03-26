@@ -1,19 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-    add(x: Int!, y: Int!): Int
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => "Hello world!",
-    add: (_, { x, y }) => x + y,
-  },
-};
+import { typeDefs } from "./services/graphql/schema.js";
+import resolvers from "./services/graphql/resolvers.js";
 
 const apolloServer = new ApolloServer({
   typeDefs,
