@@ -9,6 +9,27 @@ export const postResolvers = {
     posts: (_, __, { services }) => {
       return services.postService.getAllPosts();
     },
+
+    postsFeed(root, { page, limit }, { services }) {
+      var skip = 0;
+
+      if (page && limit) {
+        skip = page * limit;
+      }
+
+      var query = {
+        order: [["createdAt", "DESC"]],
+        offset: skip,
+      };
+
+      if (limit) {
+        query.limit = limit;
+      }
+
+      return {
+        posts: services.postService.findAll(query),
+      };
+    },
   },
 
   RootMutation: {

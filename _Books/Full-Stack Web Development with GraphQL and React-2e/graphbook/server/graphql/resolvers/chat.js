@@ -6,6 +6,9 @@ export const chatResolvers = {
     users: async (chat, _args, { services }) => {
       return services.userService.getUsersByChatId(chat.id);
     },
+    lastMessage(chat, _args, { services }) {
+      return services.messageService.getLastMessageByChatId(chat.id);
+    },
   },
 
   RootQuery: {

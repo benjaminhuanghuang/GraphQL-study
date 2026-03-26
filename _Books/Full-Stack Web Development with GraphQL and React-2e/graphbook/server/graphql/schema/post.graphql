@@ -3,6 +3,9 @@ type Post {
   text: String
   user: User
 }
+type PostFeed {
+  posts: [Post]
+}
 
 input PostInput {
   text: String!
@@ -10,6 +13,7 @@ input PostInput {
 
 extend type RootQuery {
   posts: [Post]
+  postsFeed(page: Int, limit: Int): PostFeed
 }
 
 extend type RootMutation {

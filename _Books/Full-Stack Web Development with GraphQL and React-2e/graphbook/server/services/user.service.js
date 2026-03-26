@@ -1,4 +1,4 @@
-import { users } from "../db/schema.js";
+import { users, usersChats } from "../db/schema.js";
 import { eq } from "drizzle-orm";
 
 export class UserService {
@@ -32,5 +32,17 @@ export class UserService {
       .returning();
 
     return user;
+  }
+
+  async getUsersByChatId(chatId) {
+    return this.db
+      .select({
+        id: users.id,
+        avatar: users.avatar,
+        username: users.username,
+      })
+      .from(usersChats)
+      .innerJoin(users, eq(usersChats.user_id, users.id))
+      .where(eq(usersChats.chat_id, chatId));
   }
 }
