@@ -1,6 +1,5 @@
 import { db } from "../../db/index.js";
 import { posts } from "../../db/schema.js";
-import { sql } from "drizzle-orm";
 
 import logger from "../helpers/logger.js";
 

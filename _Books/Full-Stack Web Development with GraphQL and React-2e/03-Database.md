@@ -11,3 +11,9 @@ Create db/index.js and db/schema.js
 npx drizzle-kit generate
 npx drizzle-kit push
 ```
+
+## Pass db in the context
+
+```js
+
+```
