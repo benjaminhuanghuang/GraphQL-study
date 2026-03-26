@@ -7,6 +7,7 @@ export const chatResolvers = {
       return services.userService.getUsersByChatId(chat.id);
     },
   },
+
   RootQuery: {
     chats: async (_root, _args, { services }) => {
       return services.chatService.getAllChats();
@@ -15,6 +16,7 @@ export const chatResolvers = {
       return services.chatService.getChatById(chatId);
     },
   },
+
   RootMutation: {
     addChat: async (_root, { chat }, { services }) => {
       const newChat = await services.chatService.createChat(chat);

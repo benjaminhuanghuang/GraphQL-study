@@ -7,6 +7,7 @@ export const messageResolvers = {
       return services.chatService.getChatById(message.chat_id);
     },
   },
+
   RootMutation: {
     addMessage: async (_root, { message }, { services }) => {
       const newMessage = await services.messageService.createMessage(message);
