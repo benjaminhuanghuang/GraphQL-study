@@ -14,8 +14,12 @@
     "@apollo/server": "^5.5.0",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.1",
     "express": "^5.2.1",
     "graphql": "^16.13.2",
+    "pg": "^8.20.0",
     "winston": "^3.19.0"
   }
 }
