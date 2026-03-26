@@ -9,5 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "helmet": "^8.1.0",
+    "winston": "^3.19.0"
+  }
 }
