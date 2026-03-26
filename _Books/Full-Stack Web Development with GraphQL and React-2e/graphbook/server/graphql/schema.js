@@ -12,6 +12,8 @@ export const typeDefs = `#graphql
 
   type RootQuery {
     posts: [Post]
+    users: [User]
+    user(id: Int!): User
   }
 
   input PostInput {

@@ -28,9 +28,13 @@ const messages = pgTable("messages", {
 const posts = pgTable("posts", {
   id: serial("id").primaryKey(),
   text: text("text").notNull(),
+
   user_id: integer("user_id")
-    .references(() => users.id)
-    .notNull(),
+    .notNull()
+    .references(() => users.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
 });
 
 export { users, messages, posts, chats };
