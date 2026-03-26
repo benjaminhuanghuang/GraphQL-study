@@ -1,0 +1,48 @@
+@graphqlUrl = http://localhost:4000/graphql
+@authToken = REPLACE_WITH_BEARER_TOKEN
+
+### Query: posts
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "query GetPosts { posts { id text user { id username avatar } } }"
+}
+
+### Query: postsFeed
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "query GetPostsFeed($page: Int, $limit: Int) { postsFeed(page: $page, limit: $limit) { posts { id text user { id username avatar } } } }",
+  "variables": {
+    "page": 0,
+    "limit": 10
+  }
+}
+
+
+### Mutation: addPost
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "mutation AddPost($post: PostInput!) { addPost(post: $post) { id text user { id username avatar } } }",
+  "variables": {
+    "post": {
+      "text": "Hello world from GraphQL"
+    }
+  }
+}
+
+
+### Mutation: deletePost
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "mutation DeletePost($postId: Int!) { deletePost(postId: $postId) { success } }",
+  "variables": {
+    "postId": 3
+  }
+}

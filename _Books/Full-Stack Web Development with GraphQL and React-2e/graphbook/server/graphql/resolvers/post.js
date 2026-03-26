@@ -41,5 +41,8 @@ export const postResolvers = {
         userId,
       });
     },
+    async deletePost(_root, { postId }, { services, user }) {
+      return services.postService.deletePost(postId);
+    },
   },
 };

@@ -1,5 +1,5 @@
 import { posts } from "../db/schema.js";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 /*
   Easier for testing: new PostService(mockDb)
@@ -34,5 +34,11 @@ export class PostService {
       .returning();
 
     return post;
+  }
+
+  async deletePost(postId) {
+    const result = await this.db.delete(posts).where(eq(posts.id, postId));
+
+    return { success: result.rowCount > 0 };
   }
 }

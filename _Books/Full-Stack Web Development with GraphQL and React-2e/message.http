@@ -1,0 +1,17 @@
+@graphqlUrl = http://localhost:4000/graphql
+@authToken = REPLACE_WITH_BEARER_TOKEN
+
+### Mutation: addMessage
+POST {{graphqlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "query": "mutation AddMessage($message: MessageInput!) { addMessage(message: $message) { id text user { id username } chat { id } } }",
+  "variables": {
+    "message": {
+      "text": "Hello from REST Client",
+      "chatId": 1
+    }
+  }
+}

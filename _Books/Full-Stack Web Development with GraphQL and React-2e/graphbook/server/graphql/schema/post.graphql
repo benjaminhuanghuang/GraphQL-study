@@ -7,6 +7,10 @@ type PostFeed {
   posts: [Post]
 }
 
+type Response {
+  success: Boolean
+}
+
 input PostInput {
   text: String!
 }
@@ -18,4 +22,5 @@ extend type RootQuery {
 
 extend type RootMutation {
   addPost(post: PostInput!): Post
+  deletePost(postId: Int!): Response
 }

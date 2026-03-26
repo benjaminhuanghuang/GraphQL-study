@@ -1,0 +1,62 @@
+@graphqlUrl = http://localhost:4000/graphql
+@authToken = REPLACE_WITH_BEARER_TOKEN
+
+### Query: chats
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "query GetChats { chats { id users { id username avatar } lastMessage { id text user { id username } } messages { id text } } }"
+}
+
+### Query: chat(chatId)
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "query GetChat($chatId: Int) { chat(chatId: $chatId) { id users { id username avatar } lastMessage { id text } messages { id text user { id username } } } }",
+  "variables": {
+    "chatId": 1
+  }
+}
+
+
+### Mutation: deletePost
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "mutation DeletePost($postId: Int!) { deletePost(postId: $postId) { success } }",
+  "variables": {
+    "postId": 3
+  }
+}
+
+
+### Mutation: addChat
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "mutation AddChat($chat: ChatInput!) { addChat(chat: $chat) { id users { id username avatar } } }",
+  "variables": {
+    "chat": {
+      "users": [1, 2]
+    }
+  }
+}
+
+### Mutation: addMessage
+POST {{graphqlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "query": "mutation AddMessage($message: MessageInput!) { addMessage(message: $message) { id text user { id username } chat { id } } }",
+  "variables": {
+    "message": {
+      "text": "Hello from REST Client",
+      "chatId": 1
+    }
+  }
+}
