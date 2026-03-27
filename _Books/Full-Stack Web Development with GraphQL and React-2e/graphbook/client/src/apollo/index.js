@@ -1,33 +1,45 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  InMemoryCache,
-} from "@apollo/client";
-import { ErrorLink } from "@apollo/client/link/error";
+import { ApolloClient, InMemoryCache, from } from '@apollo/client';
+import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from 'apollo-upload-client';
 
-const graphqlUri =
-  import.meta.env.VITE_GRAPHQL_ENDPOINT ?? "http://localhost:4000/graphql";
-
-const errorLink = new ErrorLink(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) => {
-      console.error("[GraphQL error]", { message, locations, path });
-    });
+const AuthLink = (operation, next) => {
+  const token = localStorage.getItem('jwt');
+  if(token) {
+    operation.setContext(context => ({
+      ...context,
+      headers: {
+        ...context.headers,
+        Authorization: `Bearer ${token}`,
+      },
+    }));
   }
-
-  if (networkError) {
-    console.error("[Network error]", networkError);
-  }
-});
-
-const httpLink = new HttpLink({
-  uri: graphqlUri,
-});
+  return next(operation);
+};
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, httpLink]),
-  cache: new InMemoryCache(),
+  link: from([
+    onError(({ graphQLErrors, networkError }) => {
+      if (graphQLErrors) {
+        graphQLErrors.map(({ message, locations, path, extensions }) => {
+          if(extensions.code === 'UNAUTHENTICATED') {
+            localStorage.removeItem('jwt');
+            client.clearStore()
+          }
+          console.log(`[GraphQL error]: Message: ${message}, Location:
+          ${locations}, Path: ${path}`);
+        });
+        if (networkError) {
+          console.log(`[Network error]: ${networkError}`);
+        }
+      }
+    }),
+    AuthLink,
+    createUploadLink({
+      uri: 'http://localhost:8000/graphql',
+      credentials: 'same-origin',
+    }),
+ ]),
+ cache: new InMemoryCache(),
 });
 
 export default client;

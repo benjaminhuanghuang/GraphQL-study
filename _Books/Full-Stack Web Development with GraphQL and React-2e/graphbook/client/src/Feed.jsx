@@ -56,14 +56,14 @@ const Feed = () => {
     update(cache, { data: { addPost } }) {
       cache.modify({
         fields: {
-          postsFeed(existingPostsFeed) {
+          postsFeed(existingPostsFeed = { posts: [] }) {
             const { posts: existingPosts } = existingPostsFeed;
             const newPostRef = cache.writeFragment({
               data: addPost,
               fragment: gql`
                 fragment NewPost on Post {
                   id
-                  type
+                  text
                 }
               `,
             });
@@ -106,15 +106,16 @@ const Feed = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!postContent.trim()) return;
+
     addPost({ variables: { post: { text: postContent } } });
     setPostContent("");
   };
 
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+  if (loading && !data) return "Loading...";
+  if (error && !data) return `Error! ${error.message}`;
 
-  const { postsFeed } = data;
-  const { posts } = postsFeed;
+  const posts = data?.postsFeed?.posts ?? [];
 
   return (
     <div className="container">
