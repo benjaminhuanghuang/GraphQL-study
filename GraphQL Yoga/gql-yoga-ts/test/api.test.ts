@@ -1,21 +1,10 @@
-import { DatabaseSync } from "node:sqlite";
 import { createYoga } from "graphql-yoga";
-import { beforeEach, describe, expect, it } from "vitest";
-import { createDatabase } from "../src/database.js";
+import { describe, expect, it } from "vitest";
 import { schema } from "../src/schema.js";
 
-describe("GraphQL Yoga SQLite API", () => {
-  let database: DatabaseSync;
-
-  beforeEach(() => {
-    database = createDatabase(":memory:");
-  });
-
+describe("GraphQL Yoga API", () => {
   it("creates and queries users over GraphQL HTTP", async () => {
-    const yoga = createYoga({
-      schema,
-      context: () => ({ database }),
-    });
+    const yoga = createYoga({ schema });
 
     const mutation = await yoga.fetch("http://localhost/graphql", {
       method: "POST",
@@ -48,7 +37,5 @@ describe("GraphQL Yoga SQLite API", () => {
         users: [{ id: "1", name: "Ada", email: "ada@example.com" }],
       },
     });
-
-    database.close();
   });
 });

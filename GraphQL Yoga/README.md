@@ -5,3 +5,9 @@
 ```sh
 npm install graphql-yoga graphql
 ```
+
+## Define schema
+
+```ts
+
+```
