@@ -1,0 +1,22 @@
+{
+  "name": "graphql-apollo-mongoose-ts",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@apollo/server": "^5.2.0",
+    "graphql": "^16.12.0",
+    "mongoose": "^9.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "6.0.3"
+  }
+}
