@@ -10,7 +10,8 @@
     "forceConsistentCasingInFileNames": true,
 
     /* Output */
-    // "rootDir": "./src", // Source code root
+    "rootDir": ".",
+    "outDir": "./dist",
 
     /* Strictness */
     "strict": true, // Enable all strict type-checking

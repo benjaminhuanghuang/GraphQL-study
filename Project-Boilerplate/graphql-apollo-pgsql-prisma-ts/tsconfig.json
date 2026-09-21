@@ -3,9 +3,10 @@
     /* Language and Environment */
     "target": "ES2023", // Modern JS features (Node.js 16+)
     "lib": ["ES2023"], // Use latest standard library
-    "module": "ESNext",
-    "moduleResolution": "node", // Resolve like Node does
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true, // Allow default import from CommonJS
+    "allowJs": true,
     "forceConsistentCasingInFileNames": true,
 
     /* Output */
@@ -20,6 +21,7 @@
     "types": ["node"], // Include Node.js type definitions
     "resolveJsonModule": true, // Allow `import data from './data.json'`
     "allowSyntheticDefaultImports": true,
+
     /* Source Maps (for debugging) */
     "sourceMap": true // Generate .map files
   },
