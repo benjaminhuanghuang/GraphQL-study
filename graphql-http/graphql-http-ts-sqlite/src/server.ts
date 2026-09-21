@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { createHandler } from "graphql-http/lib/use/node";
+import { createHandler } from "graphql-http/lib/use/http";
 import { createDatabase } from "./database.js";
 import { createRoot, schema } from "./schema.js";
 

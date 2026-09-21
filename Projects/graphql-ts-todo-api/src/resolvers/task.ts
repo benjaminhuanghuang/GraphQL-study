@@ -1,5 +1,4 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
-import { UpdateResult } from "typeorm";
 import { Task } from "../entities/Task";
 
 @Resolver()
@@ -17,15 +16,15 @@ export class TaskResolver {
   @Query(() => Task, { nullable: true })
   task(
     @Arg("id", () => Int)
-    id: number
-  ): Promise<Task | undefined> {
-    return Task.findOne({ id });
+    id: number,
+  ): Promise<Task | null> {
+    return Task.findOne({ where: { id } });
   }
- 
+
   @Mutation(() => Task)
   createTask(
     @Arg("title", () => String)
-    title: string
+    title: string,
   ): Promise<Task> {
     return Task.create({ title, isComplete: false }).save();
   }
@@ -33,7 +32,7 @@ export class TaskResolver {
   @Mutation(() => Boolean)
   deleteTask(
     @Arg("id", () => Int)
-    id: number
+    id: number,
   ): boolean {
     try {
       Task.delete({ id });
@@ -49,9 +48,9 @@ export class TaskResolver {
     id: number,
 
     @Arg("isComplete", () => Boolean)
-    isComplete: boolean
+    isComplete: boolean,
   ): boolean | null {
-    const task = Task.findOne({ id });
+    const task = Task.findOne({ where: { id } });
     if (!task) {
       return null;
     }

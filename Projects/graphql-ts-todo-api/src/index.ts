@@ -1,4 +1,4 @@
-import "reflect-metadata"
+import "reflect-metadata";
 import express, { Express } from "express";
 // graphql
 import { ApolloServer } from "apollo-server-express";
@@ -9,26 +9,24 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 // pg
 import { createConnection } from "typeorm";
 
-
 const main = async () => {
-  const conn = await createConnection({
+  await createConnection({
     type: "postgres",
     database: "todolist-graphql-db",
-    entities :[],
+    entities: [],
     logging: true,
     synchronize: true,
-    username:"postgres",
-    password:"postgres",
-    port: 5432
-  }) 
-
+    username: "postgres",
+    password: "postgres",
+    port: 5432,
+  });
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
       resolvers: [TaskResolver],
       validate: false,
     }),
-    plugins: [ApolloServerPluginLandingPageGraphQLPlayground]
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
   });
 
   await apolloServer.start();
