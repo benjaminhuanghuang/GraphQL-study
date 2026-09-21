@@ -1,0 +1,49 @@
+{
+  "name": "parallel",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "db:push": "drizzle-kit push --config ./drizzle.config.ts"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.10.2",
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/next": "^4.1.0",
+    "@heroui/react": "^2.8.10",
+    "@heroui/theme": "^2.4.26",
+    "@libsql/client": "^0.18.0",
+    "@urql/exchange-graphcache": "^7.0.2",
+    "@urql/next": "^1.1.1",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
+    "framer-motion": "^11.1.7",
+    "graphql": "^16.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^1.47.0",
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "urql": "^4.0.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.5",
+    "postcss": "^8",
+    "prettier": "^3.9.8",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5"
+  }
+}

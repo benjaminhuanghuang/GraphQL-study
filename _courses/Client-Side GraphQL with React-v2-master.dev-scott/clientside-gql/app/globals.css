@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@plugin '../heroui.plugin.mts';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
