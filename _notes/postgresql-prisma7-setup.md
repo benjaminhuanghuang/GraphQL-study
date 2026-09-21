@@ -10,11 +10,16 @@ npm i @prisma/client @prisma/adapter-pg pg dotenv
 ## DB url
 
 ```sh
-# local docker
 DATABASE_URL="postgresql://notesverb:notesverb123@localhost:5432/study"
+```
 
-# Online
+## Create DB
 
+```sh
+# drop the development database.
+npx prisma migrate reset
+
+npx prisma migrate dev --name init
 ```
 
 ## psal commands
