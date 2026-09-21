@@ -14,7 +14,7 @@ const RequireAuth = () => {
 
 const RedirectIfAuthed = () => {
   const token = useAuthToken();
-  return token ? <Navigate to="/dashboard" replace /> : <Outlet />;
+  return token ? <Navigate to="/task-list" replace /> : <Outlet />;
 };
 
 export const router = createBrowserRouter([
