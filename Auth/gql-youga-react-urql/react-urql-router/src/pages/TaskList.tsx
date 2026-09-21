@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { Link } from "react-router";
 import { useMutation, useQuery } from "urql";
 
@@ -48,7 +48,7 @@ export const TaskList = () => {
   const [description, setDescription] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
-  const onCreate = async (event: FormEvent) => {
+  const onCreate = async (event: SubmitEvent) => {
     event.preventDefault();
     setFormError(null);
 

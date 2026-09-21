@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useMutation } from "urql";
 import { authStore } from "../authStore";
 
@@ -26,7 +26,7 @@ export const Login = () => {
   const [, login] = useMutation(LOGIN_MUTATION);
   const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = async (event: FormEvent) => {
+  const onSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
     setError(null);
 
