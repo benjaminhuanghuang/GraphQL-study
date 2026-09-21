@@ -5,23 +5,22 @@ Apollo Server + typeDefs + resolvers + Prisma 7 + PostgreSQL
 ## Setup typescript
 
 ```sh
-  npm i -D typescript @types/node
+  npm i -D typescript tsx @types/node
 ```
 
 Add script
 
 ```json
-  "watch": "tsc -w",
-  "dev":"nodemon dist/index.js "
+  "dev": "prisma generate && tsx watch src/index.ts"
 ```
 
 ## Setup GraphQL
 
 ```sh
-  npm i express
-  npm i -D @types/express
-  npm i apollo-server-express graphql
+  npm i @apollo/server graphql
 ```
+
+`startStandaloneServer` 起一个纯 GraphQL server，不需要 express。
 
 ## Prisma + PostgreSQL
 
