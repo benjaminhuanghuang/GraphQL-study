@@ -6,7 +6,7 @@
 
 npm init -y
 
-npm i apollo-server graphql
+npm  @apollo/server graphql
 
 npm i -D typescript ts-node
 

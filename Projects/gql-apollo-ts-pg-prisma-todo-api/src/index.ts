@@ -1,29 +1,19 @@
-import "reflect-metadata";
-import express, { Express } from "express";
-// graphql
-import { ApolloServer } from "apollo-server-express";
-import { buildSchema } from "type-graphql";
-//
-import { TaskResolver } from "./resolvers/task";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { resolvers, typeDefs } from "./schema";
 
 const main = async () => {
   const apolloServer = new ApolloServer({
-    schema: await buildSchema({
-      resolvers: [TaskResolver],
-      validate: false,
-    }),
-    plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
+    typeDefs,
+    resolvers,
   });
 
-  await apolloServer.start();
-  const app: Express = express();
-  // use apollo
-  apolloServer.applyMiddleware({ app });
+  const port = Number(process.env.PORT) || 8964;
+  const { url } = await startStandaloneServer(apolloServer, {
+    listen: { port },
+  });
 
-  app.get("/", (_req, res) => res.send("hello world"));
-  const PORT = process.env.PORT || 8964;
-  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  console.log(`Server started at ${url}`);
 };
 
-main().catch((err) => console.error(err));
+main().catch((error) => console.error(error));
