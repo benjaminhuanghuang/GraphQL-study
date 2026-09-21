@@ -1,23 +1,28 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import { authStore } from "../authStore";
 import { useAuthToken } from "../useAuthToken";
+
+const linkClassName = ({ isActive }: { isActive: boolean }) =>
+  isActive
+    ? "font-semibold text-blue-600"
+    : "text-slate-600 hover:text-slate-900";
 
 export const Navbar = () => {
   const token = useAuthToken();
 
   return (
     <nav className="flex items-center gap-4 border-b border-slate-200 bg-white px-4 py-3 text-sm">
-      <Link to="/" className="font-semibold text-slate-900">
+      <NavLink to="/" end className={linkClassName}>
         GraphQL Auth Study
-      </Link>
-      <Link to="/about" className="text-slate-600 hover:text-slate-900">
+      </NavLink>
+      <NavLink to="/about" className={linkClassName}>
         About
-      </Link>
+      </NavLink>
       {token ? (
         <>
-          <Link to="/task-list" className="text-slate-600 hover:text-slate-900">
+          <NavLink to="/task-list" className={linkClassName}>
             Task List
-          </Link>
+          </NavLink>
           <button
             onClick={() => authStore.setToken(null)}
             className="ml-auto text-slate-600 hover:text-slate-900"
@@ -26,12 +31,12 @@ export const Navbar = () => {
           </button>
         </>
       ) : (
-        <Link
+        <NavLink
           to="/login"
-          className="ml-auto text-slate-600 hover:text-slate-900"
+          className={({ isActive }) => `ml-auto ${linkClassName({ isActive })}`}
         >
           Log in
-        </Link>
+        </NavLink>
       )}
     </nav>
   );
