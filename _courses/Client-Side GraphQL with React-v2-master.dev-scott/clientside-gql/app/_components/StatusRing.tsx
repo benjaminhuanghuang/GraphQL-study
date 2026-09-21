@@ -10,7 +10,7 @@ const getStatusClass = (status: string) => {
       : ''
 }
 
-const StatusRing = ({ status }) => {
+const StatusRing = ({ status }: { status: string }) => {
   const statusClass = getStatusClass(status)
 
   return status === 'DONE' ? (
