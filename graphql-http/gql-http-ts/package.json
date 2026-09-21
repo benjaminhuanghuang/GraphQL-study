@@ -1,0 +1,21 @@
+{
+  "name": "gql-http-ts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "test": "node --import tsx --test test/api.test.ts"
+  },
+  "dependencies": {
+    "graphql": "^16.11.0",
+    "graphql-http": "^1.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.3",
+    "typescript": "6.0.3"
+  }
+}
