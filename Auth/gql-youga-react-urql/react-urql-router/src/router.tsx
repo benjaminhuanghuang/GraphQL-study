@@ -1,9 +1,10 @@
 import { createBrowserRouter, Navigate, Outlet } from "react-router";
 import { Layout } from "./Layout";
 import { About } from "./pages/About";
-import { AuthForm } from "./pages/AuthForm";
-import { Dashboard } from "./pages/Dashboard";
 import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { TaskDetail } from "./pages/TaskDetail";
+import { TaskList } from "./pages/TaskList";
 import { useAuthToken } from "./useAuthToken";
 
 const RequireAuth = () => {
@@ -24,11 +25,14 @@ export const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       {
         element: <RedirectIfAuthed />,
-        children: [{ path: "/login", element: <AuthForm /> }],
+        children: [{ path: "/login", element: <Login /> }],
       },
       {
         element: <RequireAuth />,
-        children: [{ path: "/dashboard", element: <Dashboard /> }],
+        children: [
+          { path: "/task-list", element: <TaskList /> },
+          { path: "/tasks/:id", element: <TaskDetail /> },
+        ],
       },
     ],
   },

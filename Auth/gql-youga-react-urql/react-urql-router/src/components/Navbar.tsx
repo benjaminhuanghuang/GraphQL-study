@@ -15,8 +15,8 @@ export const Navbar = () => {
       </Link>
       {token ? (
         <>
-          <Link to="/dashboard" className="text-slate-600 hover:text-slate-900">
-            Dashboard
+          <Link to="/task-list" className="text-slate-600 hover:text-slate-900">
+            Task List
           </Link>
           <button
             onClick={() => authStore.setToken(null)}

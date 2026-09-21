@@ -18,7 +18,7 @@ const LOGIN_MUTATION = `#graphql
   }
 `;
 
-export const AuthForm = () => {
+export const Login = () => {
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
