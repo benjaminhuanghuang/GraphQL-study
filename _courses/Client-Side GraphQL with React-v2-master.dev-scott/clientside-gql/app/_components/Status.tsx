@@ -10,11 +10,11 @@ import StatusRing from './StatusRing'
 import { useMutation } from 'urql'
 import { EditIssueIssueMutation } from '@/gql/updateIssueMutation'
 
-const Status = ({ status, issueId }) => {
+const Status = ({ status, issueId }: { status: string; issueId: string }) => {
   const [editResult, editIssue] = useMutation(EditIssueIssueMutation)
 
-  const onAction = async (newStatus: string) => {
-    await editIssue({ input: { id: issueId, status: newStatus } })
+  const onAction = async (newStatus: string | number) => {
+    await editIssue({ input: { id: issueId, status: String(newStatus) } })
   }
 
   return (
