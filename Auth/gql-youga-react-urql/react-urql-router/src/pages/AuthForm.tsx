@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useMutation } from "urql";
-import { authStore } from "./authStore";
+import { authStore } from "../authStore";
 
 const SIGNUP_MUTATION = `#graphql
   mutation Signup($username: String!, $password: String!) {

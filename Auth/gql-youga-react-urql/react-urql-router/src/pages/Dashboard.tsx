@@ -1,5 +1,5 @@
 import { useQuery } from "urql";
-import { authStore } from "./authStore";
+import { authStore } from "../authStore";
 
 const ME_QUERY = `#graphql
   query Me {

@@ -1,6 +1,9 @@
 import { createBrowserRouter, Navigate, Outlet } from "react-router";
-import { AuthForm } from "./AuthForm";
-import { Dashboard } from "./Dashboard";
+import { Layout } from "./Layout";
+import { About } from "./pages/About";
+import { AuthForm } from "./pages/AuthForm";
+import { Dashboard } from "./pages/Dashboard";
+import { Home } from "./pages/Home";
 import { useAuthToken } from "./useAuthToken";
 
 const RequireAuth = () => {
@@ -10,16 +13,23 @@ const RequireAuth = () => {
 
 const RedirectIfAuthed = () => {
   const token = useAuthToken();
-  return token ? <Navigate to="/" replace /> : <Outlet />;
+  return token ? <Navigate to="/dashboard" replace /> : <Outlet />;
 };
 
 export const router = createBrowserRouter([
   {
-    element: <RedirectIfAuthed />,
-    children: [{ path: "/login", element: <AuthForm /> }],
-  },
-  {
-    element: <RequireAuth />,
-    children: [{ path: "/", element: <Dashboard /> }],
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/about", element: <About /> },
+      {
+        element: <RedirectIfAuthed />,
+        children: [{ path: "/login", element: <AuthForm /> }],
+      },
+      {
+        element: <RequireAuth />,
+        children: [{ path: "/dashboard", element: <Dashboard /> }],
+      },
+    ],
   },
 ]);
