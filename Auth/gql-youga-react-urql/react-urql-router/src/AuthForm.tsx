@@ -45,35 +45,61 @@ export const AuthForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>{mode === "login" ? "Log in" : "Sign up"}</h1>
-      <label>
-        Username
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          minLength={3}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          minLength={8}
-          required
-        />
-      </label>
-      {error && <p role="alert">{error}</p>}
-      <button type="submit">{mode === "login" ? "Log in" : "Sign up"}</button>
-      <button
-        type="button"
-        onClick={() => setMode(mode === "login" ? "signup" : "login")}
+    <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
+      <form
+        onSubmit={onSubmit}
+        className="w-full max-w-sm space-y-4 rounded-xl bg-white p-8 shadow-sm"
       >
-        {mode === "login" ? "Need an account? Sign up" : "Have an account? Log in"}
-      </button>
-    </form>
+        <h1 className="text-xl font-semibold text-slate-900">
+          {mode === "login" ? "Log in" : "Sign up"}
+        </h1>
+
+        <label className="block text-sm font-medium text-slate-700">
+          Username
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            minLength={3}
+            required
+            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500"
+          />
+        </label>
+
+        <label className="block text-sm font-medium text-slate-700">
+          Password
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            minLength={8}
+            required
+            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500"
+          />
+        </label>
+
+        {error && (
+          <p role="alert" className="text-sm text-red-600">
+            {error}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          className="w-full rounded-md bg-slate-900 py-2 text-sm font-medium text-white hover:bg-slate-800"
+        >
+          {mode === "login" ? "Log in" : "Sign up"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMode(mode === "login" ? "signup" : "login")}
+          className="w-full text-center text-sm text-slate-500 hover:text-slate-700"
+        >
+          {mode === "login"
+            ? "Need an account? Sign up"
+            : "Have an account? Log in"}
+        </button>
+      </form>
+    </main>
   );
 };

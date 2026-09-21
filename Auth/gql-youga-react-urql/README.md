@@ -6,14 +6,16 @@ Minimal username/password auth flow to study how JWT auth works end-to-end in Gr
 
 ### Backend
 
-- TS
+- TS 7
 - GraphQL Yoga (plain `node:http`, no Express)
 - node:sqlite (no ORM — plain SQL via`node:sqlite`'s `DatabaseSync`)
 
 ### Frontend
 
+- TS 6
 - React 19
-- Router 8
+- React Router 8 (`createBrowserRouter`/`RouterProvider`, `/login` vs. protected `/`)
+- Tailwind CSS 4
 - urql (`authExchange` for attaching/expiring the JWT)
 
 ## How auth works here
@@ -23,6 +25,7 @@ Minimal username/password auth flow to study how JWT auth works end-to-end in Gr
 3. The server's `context()` (`gql-youga-sqlite-drizzle/src/context.ts`) verifies the token per request and puts the decoded payload on `ctx.user`.
 4. Resolvers that need auth read `ctx.user`; `Query.me` returns `null` when there's no valid token.
 5. If a request comes back with a GraphQL error whose `extensions.code` is `UNAUTHENTICATED`, urql's `didAuthError` fires and `refreshAuth` clears the stored token (there's no refresh-token flow in this study app — it just signs the user out).
+6. Routing (`react-urql-router/src/router.tsx`) reacts to the same token state: `/login` redirects to `/` once signed in, and `/` redirects to `/login` when signed out — no explicit `navigate()` calls needed, since setting the token re-renders the route guards.
 
 ## Run it
 
