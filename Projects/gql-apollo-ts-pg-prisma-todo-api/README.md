@@ -13,15 +13,21 @@ Add script
 
 ## Setup express
 
-```
+```sh
   npm i express
   npm i -D @types/express
   npm i apollo-server-express graphql type-graphql
   npm i reflect-metadata
 ```
 
-## Connect to PostgSQL
+## Prisma + PostgreSQL
 
+```sh
+  cp .env.example .env
+  npm run prisma:generate
+  npm run prisma:migrate
 ```
-  npm i typeorm pg
+
+```sh
+npm run dev
 ```

@@ -1,4 +1,5 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
+import { prisma } from "../prisma";
 import { Task } from "../entities/Task";
 
 @Resolver()
@@ -10,7 +11,7 @@ export class TaskResolver {
 
   @Query(() => [Task])
   tasks(): Promise<Task[]> {
-    return Task.find({});
+    return prisma.task.findMany();
   }
 
   @Query(() => Task, { nullable: true })
@@ -18,7 +19,7 @@ export class TaskResolver {
     @Arg("id", () => Int)
     id: number,
   ): Promise<Task | null> {
-    return Task.findOne({ where: { id } });
+    return prisma.task.findUnique({ where: { id } });
   }
 
   @Mutation(() => Task)
@@ -26,20 +27,18 @@ export class TaskResolver {
     @Arg("title", () => String)
     title: string,
   ): Promise<Task> {
-    return Task.create({ title, isComplete: false }).save();
+    return prisma.task.create({ data: { title } });
   }
 
   @Mutation(() => Boolean)
   deleteTask(
     @Arg("id", () => Int)
     id: number,
-  ): boolean {
-    try {
-      Task.delete({ id });
-      return true;
-    } catch {
-      return false;
-    }
+  ): Promise<boolean> {
+    return prisma.task
+      .delete({ where: { id } })
+      .then(() => true)
+      .catch(() => false);
   }
 
   @Mutation(() => Boolean, { nullable: true })
@@ -49,17 +48,16 @@ export class TaskResolver {
 
     @Arg("isComplete", () => Boolean)
     isComplete: boolean,
-  ): boolean | null {
-    const task = Task.findOne({ where: { id } });
-    if (!task) {
-      return null;
-    }
+  ): Promise<boolean | null> {
+    return prisma.task.findUnique({ where: { id } }).then((task) => {
+      if (!task) {
+        return null;
+      }
 
-    try {
-      Task.update({ id }, { isComplete });
-      return true;
-    } catch {
-      return false;
-    }
+      return prisma.task
+        .update({ where: { id }, data: { isComplete } })
+        .then(() => true)
+        .catch(() => false);
+    });
   }
 }
