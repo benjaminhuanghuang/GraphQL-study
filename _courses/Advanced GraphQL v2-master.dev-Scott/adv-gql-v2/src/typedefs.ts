@@ -1,4 +1,6 @@
 const typeDefs = `#graphql
+  directive @date(format: String) on FIELD_DEFINITION
+
   enum Theme {
     DARK
     LIGHT
@@ -15,7 +17,7 @@ const typeDefs = `#graphql
     email: String!
     avatar: String!
     verified: Boolean!
-    createdAt: String!
+    createdAt: String! @date
     posts: [Post]!
     role: Role!
     settings: Settings!
@@ -30,7 +32,7 @@ const typeDefs = `#graphql
     id: ID!
     message: String!
     author: User!
-    createdAt: String!
+    createdAt: String! @date
     likes: Int!
     views: Int!
   }
@@ -46,7 +48,7 @@ const typeDefs = `#graphql
   type Invite {
     email: String!
     from: User!
-    createdAt: String!
+    createdAt: String! @date
     role: Role!
   }
 

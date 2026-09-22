@@ -13,8 +13,10 @@ import typeDefs from "./typedefs";
 import resolvers from "./resolvers";
 import { createToken, getUserFromToken } from "./auth";
 import * as db from "./db/index";
+import { dateDirectiveTransformer } from "./directives";
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+let schema = makeExecutableSchema({ typeDefs, resolvers });
+schema = dateDirectiveTransformer(schema);
 
 const app = express();
 const httpServer = http.createServer(app);

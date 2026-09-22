@@ -12,4 +12,13 @@ Allows you to add logic and metadata to your Schemas, Queries, or Mutations. Dir
 
 ## Custom Directives Solution: Date Formatting
 
+```ts
+directive @date(format: String) on FIELD_DEFINITION
+
+
+type Post {
+    createdAt: String! @date
+}
+```
+
 ## Custom Directives Solution: Authorization & Authentication
