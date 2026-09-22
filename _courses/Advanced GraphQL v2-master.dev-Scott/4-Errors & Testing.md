@@ -6,6 +6,9 @@
 
 ## Testing Resolvers, the Schema, & the Server
 
+- UT resolver functions
+- Mock out data source
+
 ## Testing Setup
 
 ## Errors & Testing Exercise
