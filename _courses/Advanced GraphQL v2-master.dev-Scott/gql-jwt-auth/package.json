@@ -13,12 +13,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "@apollo/server": "^5.5.1",
-    "graphql": "^16.14.2"
+    "dotenv": "^18.0.2",
+    "graphql": "^16.14.2",
+    "jsonwebtoken": "^9.0.3",
+    "lowdb": "^7.0.1",
+    "nanoid": "^6.0.1"
   }
 }
