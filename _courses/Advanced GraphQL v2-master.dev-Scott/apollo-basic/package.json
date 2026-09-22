@@ -2,10 +2,12 @@
   "name": "adv-gqlv2",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc"
+    "dev": "tsx watch src/apollo-server-basic.ts",
+    "build": "tsc",
+    "apollo:basic": "tsx watch src/apollo-server-basic.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +16,9 @@
     "@types/node": "^26.6.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "graphql": "^16.14.2"
   }
 }
