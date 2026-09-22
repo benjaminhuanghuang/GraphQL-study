@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`queries > feed 1`] = `
+{
+  "data": {
+    "feed": [
+      {
+        "createdAt": "12345839",
+        "id": "1",
+        "likes": 20,
+        "message": "hello",
+        "views": 300,
+      },
+    ],
+  },
+  "errors": undefined,
+}
+`;

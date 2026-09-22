@@ -5,9 +5,9 @@
   "type": "module",
   "description": "",
   "scripts": {
-    "dev": "tsx watch src/apollo-server-basic.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "apollo:basic": "tsx watch src/apollo-server-basic.ts"
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,8 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.2",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
   },
   "dependencies": {
     "@apollo/server": "^5.5.1",

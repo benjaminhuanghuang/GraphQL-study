@@ -7,7 +7,6 @@
     "types": ["node"],
     "skipLibCheck": true,
     "sourceMap": true,
-    "rootDir": "./src",
     "outDir": "./dist",
     "removeComments": true,
     "strict": true,
@@ -21,5 +20,5 @@
     "useDefineForClassFields": false
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "./tests/**/*.ts"]
 }
