@@ -38,12 +38,15 @@ export const TaskDetail = () => {
 
   const onDelete = async () => {
     await deleteTask({ id });
-    navigate("/dashboard");
+    navigate("/task-list");
   };
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-16">
-      <Link to="/dashboard" className="text-sm text-slate-500 hover:text-slate-700">
+      <Link
+        to="/task-list"
+        className="text-sm text-slate-500 hover:text-slate-700"
+      >
         ← Back to tasks
       </Link>
 

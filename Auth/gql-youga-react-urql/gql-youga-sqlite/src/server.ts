@@ -2,7 +2,7 @@ import "dotenv/config";
 import { createServer } from "node:http";
 import { createYoga } from "graphql-yoga";
 import { createContext } from "./context.js";
-import { schema } from "./schema.js";
+import { schema } from "./schema/index.js";
 
 const port = Number(process.env.PORT ?? 4000);
 const yoga = createYoga({
