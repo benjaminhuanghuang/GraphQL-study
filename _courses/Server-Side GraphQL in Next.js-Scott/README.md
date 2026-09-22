@@ -2,9 +2,11 @@
 
 by Scott Moss, 2024
 
-https://frontendmasters.com/courses/server-graphql-nodejs/
+https://master.dev/courses/server-graphql-nextjs/
 
-https://github.com/FrontendMasters/fullstack-graphql
+[Code](https://github.com/Hendrixer/server-side-gql)
+
+https://clumsy-humor-894.notion.site/Server-side-GraphQL-55308b7315644a858dd6ccf0201ff13c
 
 https://www.bilibili.com/video/BV1Km4y1Q7HM/
 
