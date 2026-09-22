@@ -1,0 +1,25 @@
+{
+  "name": "apollo-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.2",
+    "graphql": "^16.14.2",
+    "jsonwebtoken": "^9.0.3",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.6.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

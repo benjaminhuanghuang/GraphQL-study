@@ -21,8 +21,8 @@ export const typeDefs = `#graphql
   }
 
   type Mutation {
-    settings(input: NewSettingsInput!): Settings!
+      settings(input: NewSettingsInput!): Settings!
   }
 `;
 
-const resol;
+const resolvers = {};
