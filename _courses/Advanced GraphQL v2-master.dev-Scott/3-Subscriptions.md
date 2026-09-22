@@ -31,6 +31,32 @@ Both
 - Add any needed authentication and context
 - Client side setup
 
+```ts
+import { PubSub } from "graphql-subscriptions";
+
+const NEW_POST = "NEW_POST";
+const pubSub = new PubSub();
+
+
+createPost(
+    _: unknown,
+    { input }: { input: Record<string, unknown> },
+    { user, models }: Context,
+) {
+    const post = models.Post.createOne({ ...input, author: user!.id });
+    pubSub.publish(NEW_POST, { newPost: post });
+    return post;
+},
+
+
+Subscription: {
+    newPost: {
+        subscribe: () => pubSub.asyncIterableIterator(NEW_POST),
+    },
+},
+
+```
+
 ## Adding Subscriptions Exercise
 
 ## Adding Subscriptions Solution

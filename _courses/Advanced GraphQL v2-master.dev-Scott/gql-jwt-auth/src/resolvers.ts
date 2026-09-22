@@ -1,5 +1,10 @@
 import type { AuthUser } from "./auth";
+import { PubSub } from "graphql-subscriptions";
+
 import type { db as Database, models as Models } from "./db/index";
+
+const NEW_POST = "NEW_POST";
+const pubSub = new PubSub();
 
 interface Context {
   user: AuthUser | null;
@@ -41,7 +46,9 @@ const resolvers = {
       { input }: { input: Record<string, unknown> },
       { user, models }: Context,
     ) {
-      return models.Post.createOne({ ...input, author: user!.id });
+      const post = models.Post.createOne({ ...input, author: user!.id });
+      pubSub.publish(NEW_POST, { newPost: post });
+      return post;
     },
 
     updateMe(
@@ -96,6 +103,11 @@ const resolvers = {
 
       const token = createToken(user);
       return { token, user };
+    },
+  },
+  Subscription: {
+    newPost: {
+      subscribe: () => pubSub.asyncIterableIterator(NEW_POST),
     },
   },
   User: {

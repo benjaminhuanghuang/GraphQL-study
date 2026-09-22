@@ -1,25 +1,88 @@
 import "dotenv/config";
+import http from "node:http";
+import express from "express";
+import cors from "cors";
+import { WebSocketServer } from "ws";
+import { useServer } from "graphql-ws/use/ws";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone";
+import type { ApolloServerPlugin } from "@apollo/server";
+import { expressMiddleware } from "@as-integrations/express5";
 
 import typeDefs from "./typedefs";
 import resolvers from "./resolvers";
 import { createToken, getUserFromToken } from "./auth";
 import * as db from "./db/index";
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+const app = express();
+const httpServer = http.createServer(app);
+
+const wsServer = new WebSocketServer({
+  server: httpServer,
+  path: "/graphql",
 });
 
-const { url } = await startStandaloneServer(server, {
-  context: async ({ req }) => {
-    // get token
-    const token = req.headers.authorization;
-    const user = getUserFromToken(token);
-    return { ...db, user, createToken };
+const serverCleanup = useServer(
+  {
+    schema,
+    context: async (ctx) => {
+      const token = ctx.connectionParams?.authorization as
+        | string
+        | undefined;
+      const user = getUserFromToken(token);
+      return { ...db, user, createToken };
+    },
   },
-  listen: { port: 4000 },
+  wsServer,
+);
+
+const server = new ApolloServer({
+  schema,
+  plugins: [
+    // proper shutdown for the HTTP server
+    {
+      async serverWillStart() {
+        return {
+          async drainServer() {
+            await new Promise<void>((resolve) =>
+              httpServer.close(() => resolve()),
+            );
+          },
+        };
+      },
+    } satisfies ApolloServerPlugin,
+    // proper shutdown for the WebSocket server
+    {
+      async serverWillStart() {
+        return {
+          async drainServer() {
+            await serverCleanup.dispose();
+          },
+        };
+      },
+    } satisfies ApolloServerPlugin,
+  ],
 });
 
-console.log(`🚀 Server ready at ${url}`);
+await server.start();
+
+app.use(
+  "/graphql",
+  cors<cors.CorsRequest>(),
+  express.json(),
+  expressMiddleware(server, {
+    context: async ({ req }) => {
+      const token = req.headers.authorization;
+      const user = getUserFromToken(token);
+      return { ...db, user, createToken };
+    },
+  }),
+);
+
+const PORT = 4000;
+httpServer.listen(PORT, () => {
+  console.log(`🚀 Query/Mutation endpoint ready at http://localhost:${PORT}/graphql`);
+  console.log(`🚀 Subscription endpoint ready at ws://localhost:${PORT}/graphql`);
+});
